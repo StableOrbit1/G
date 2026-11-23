@@ -1,212 +1,2398 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BattleTags Photo Patcher</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ontario G1 Knowledge Mastery — Official MTO Handbook Study Guide</title>
+  <!-- Tailwind CSS CDN for clean, responsive minimalist styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter font for crisp, high-legibility study reading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Soft fade-and-rise transition for sequential step navigation */
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-enter {
+      animation: fadeSlideIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Subtle custom scrollbars for minimalist aesthetic */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Soft subtle card shadow */
+    .shadow-2xs {
+      box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+    }
+  </style>
 </head>
-<body class="bg-slate-100 text-slate-900 font-sans min-h-screen flex items-center justify-center p-6">
+<body class="min-h-screen flex flex-col lg:flex-row bg-slate-50 text-slate-900">
 
-    <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-xl max-w-lg w-full space-y-6">
-        <div class="flex items-center gap-4 border-b border-slate-100 pb-6">
-            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center shadow-inner shrink-0">
-                <i data-lucide="wrench" class="w-6 h-6"></i>
-            </div>
-            <div>
-                <h1 class="text-2xl font-black tracking-tight text-slate-800">Photo Patcher</h1>
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Admin Database Utility</p>
-            </div>
+  <!-- =========================================================================
+       MOBILE HEADER (Visible below lg breakpoint)
+       ========================================================================= -->
+  <header class="lg:hidden sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <button id="mobile-menu-btn" aria-label="Open curriculum menu" class="p-2 -ml-1 rounded-xl text-slate-600 hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <div>
+        <div class="text-sm font-bold tracking-tight text-slate-900 leading-none">Ontario G1 Mastery</div>
+        <div id="mobile-step-label" class="text-[11px] font-medium text-emerald-700 mt-0.5">Module 1 of 10</div>
+      </div>
+    </div>
+    <button onclick="openCheatSheet()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-xs font-semibold text-slate-700 transition">
+      <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+      Cheat Sheet
+    </button>
+  </header>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" onclick="closeMobileMenu()" class="fixed inset-0 z-40 bg-slate-900/25 backdrop-blur-xs hidden lg:hidden transition-opacity"></div>
+
+  <!-- =========================================================================
+       LEFT SIDEBAR NAVIGATION
+       ========================================================================= -->
+  <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-50 lg:z-20 h-screen w-80 bg-white border-r border-slate-200/80 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out shrink-0">
+    <!-- Brand & Progress Header -->
+    <div class="p-5 border-b border-slate-100">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shadow-xs">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-sm font-bold tracking-tight text-slate-900">Ontario G1 Mastery</h1>
+            <p class="text-[11px] text-slate-500">Official MTO Handbook Guide</p>
+          </div>
         </div>
+        <button onclick="closeMobileMenu()" aria-label="Close menu" class="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
 
-        <div id="loading-state" class="py-12 text-center text-slate-400 font-bold uppercase tracking-widest flex flex-col items-center justify-center gap-3">
-            <i data-lucide="loader-2" class="w-8 h-8 animate-spin text-emerald-500"></i>
-            Connecting to Database...
+      <!-- Overall Completion Progress Bar -->
+      <div class="mt-4">
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="font-medium text-slate-600">Study Progress</span>
+          <span id="progress-percent" class="font-semibold text-emerald-700">0%</span>
         </div>
-
-        <form id="patch-form" class="space-y-6 hidden">
-            <div class="space-y-2">
-                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Select Completed Match</label>
-                <select id="match-selector" required class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-bold text-slate-700 outline-none focus:border-emerald-500 cursor-pointer text-sm">
-                    <option value="">Loading matches...</option>
-                </select>
-            </div>
-
-            <div class="space-y-2">
-                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 flex items-center gap-1">
-                    <i data-lucide="camera" class="w-3 h-3"></i> New Photo to Upload
-                </label>
-                <input type="file" id="new-photo" required accept="image/*" class="w-full p-4 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl text-sm text-slate-500 outline-none cursor-pointer">
-            </div>
-
-            <button type="submit" id="submit-btn" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2">
-                <i data-lucide="upload-cloud" class="w-5 h-5"></i> Patch Photo
-            </button>
-        </form>
-        
-        <div id="success-state" class="hidden py-8 text-center space-y-4">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
-                <i data-lucide="check-circle-2" class="w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-black text-slate-800 tracking-tight">Photo Patched!</h3>
-            <p class="text-sm font-medium text-slate-500">The database has been updated.</p>
-            <button onclick="location.reload()" class="mt-4 px-6 py-3 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs uppercase tracking-widest text-slate-600 transition-colors">Patch Another</button>
+        <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+          <div id="progress-bar" class="h-full bg-emerald-500 rounded-full transition-all duration-300" style="width: 0%"></div>
         </div>
+        <div id="progress-subtext" class="text-[11px] text-slate-400 mt-1.5">0 of 21 steps completed</div>
+      </div>
     </div>
 
-    <!-- Toast Container -->
-    <div id="toast-container" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-[1000] flex flex-col gap-2 pointer-events-none"></div>
+    <!-- Scrollable Curriculum List -->
+    <nav id="sidebar-nav" class="flex-1 overflow-y-auto p-3 space-y-1" aria-label="Study modules"></nav>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+    <!-- Sidebar Footer Actions -->
+    <div class="p-3.5 border-t border-slate-100 space-y-2 bg-slate-50/60">
+      <button onclick="openCheatSheet()" class="w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white border border-slate-200/90 hover:border-emerald-300 hover:bg-emerald-50/40 text-xs font-semibold text-slate-700 transition shadow-2xs">
+        <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        High-Yield Numbers Cheat Sheet
+      </button>
+      <button onclick="openResetModal()" class="w-full px-3 py-1.5 rounded-lg text-[11px] font-medium text-slate-400 hover:text-rose-600 hover:bg-rose-50/60 transition">
+        Reset Saved Progress
+      </button>
+    </div>
+  </aside>
 
-        const DATABASE_FOLDER_NAME = 'friday-harbour-battle-tags';
+  <!-- =========================================================================
+       MAIN STUDY WORKSPACE
+       ========================================================================= -->
+  <div class="flex-1 flex flex-col min-w-0 min-h-screen">
+    <!-- Top Desktop Breadcrumb Bar -->
+    <div class="hidden lg:flex items-center justify-between px-8 py-4 bg-white/80 backdrop-blur-md border-b border-slate-200/70 sticky top-0 z-10">
+      <div id="breadcrumb-bar" class="flex items-center gap-2 text-xs">
+        <span class="text-slate-400">MTO Handbook</span>
+        <span class="text-slate-300">/</span>
+        <span class="font-medium text-slate-700">Loading...</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://www.ontario.ca/document/official-mto-drivers-handbook" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-slate-400 hover:text-emerald-700 transition flex items-center gap-1">
+          Official MTO Source
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+    </div>
 
-        // Setup Config matching your main app
-        let firebaseConfig;
-        let activeAppId;
-        try {
-            firebaseConfig = JSON.parse(__firebase_config);
-            activeAppId = typeof __app_id !== 'undefined' ? __app_id : DATABASE_FOLDER_NAME;
-        } catch (e) {
-            firebaseConfig = {
-                apiKey: "AIzaSyDf_1RE4hscqVVbHoN7Vvqoylj8elWLUn4",
-                authDomain: "battletags-27390.firebaseapp.com",
-                projectId: "battletags-27390",
-                storageBucket: "battletags-27390.firebasestorage.app",
-                messagingSenderId: "930795580018",
-                appId: "1:930795580018:web:b82b95d64572483f85f0eb"
-            };
-            activeAppId = DATABASE_FOLDER_NAME;
-        }
+    <!-- Main Dynamic Content Stage -->
+    <main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-8 py-7 sm:py-10">
+      <div id="content-stage"></div>
+    </main>
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
+    <!-- Sticky Bottom Sequential Navigation Bar -->
+    <footer class="sticky bottom-0 z-10 bg-white/90 backdrop-blur-md border-t border-slate-200/80 px-4 sm:px-8 py-3.5">
+      <div class="max-w-4xl mx-auto flex items-center justify-between gap-3">
+        <button id="prev-btn" onclick="goPrev()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 disabled:opacity-40 disabled:cursor-not-allowed transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Previous
+        </button>
 
-        // Toast Helper
-        window.showToast = function(msg, isError = false) {
-            const container = document.getElementById('toast-container');
-            const t = document.createElement('div');
-            t.className = `px-6 py-4 rounded-2xl font-black text-xs uppercase tracking-widest text-white shadow-2xl transition-all duration-300 ${isError ? 'bg-rose-600' : 'bg-slate-900'}`;
-            t.innerHTML = msg; 
-            container.appendChild(t);
-            setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 3000);
-        }
+        <div id="bottom-status-hint" class="hidden sm:block text-xs text-slate-500 text-center truncate px-2"></div>
 
-        // Image Compression Helper
-        const compressImage = async (file, maxWidth = 1200, maxHeight = 1200, quality = 0.7) => {
-            return new Promise((resolve, reject) => {
-                const img = new Image(); img.src = URL.createObjectURL(file);
-                img.onload = () => {
-                    URL.revokeObjectURL(img.src);
-                    let width = img.width, height = img.height;
-                    if (width > height) { if (width > maxWidth) { height = Math.round(height * (maxWidth / width)); width = maxWidth; } } 
-                    else { if (height > maxHeight) { width = Math.round(width * (maxHeight / height)); height = maxHeight; } }
-                    const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height;
-                    const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height);
-                    canvas.toBlob((blob) => { if (blob) resolve(blob); else reject(new Error('Canvas compression failed')); }, 'image/jpeg', quality);
-                };
-                img.onerror = (error) => reject(error);
-            });
+        <button id="next-btn" onclick="goNext()" class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed transition shadow-2xs">
+          <span id="next-btn-label">Next</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =========================================================================
+       HIGH-YIELD NUMBERS CHEAT SHEET MODAL
+       ========================================================================= -->
+  <div id="cheatsheet-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/35 backdrop-blur-xs">
+    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden fade-enter">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+        <div>
+          <h2 class="text-base font-bold text-slate-900">Ontario G1 High-Yield Numbers Cheat Sheet</h2>
+          <p class="text-xs text-slate-500">Rapid pre-exam review of the exact figures tested by the MTO</p>
+        </div>
+        <button onclick="closeCheatSheet()" aria-label="Close cheat sheet" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-5 text-xs sm:text-sm">
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="font-semibold text-emerald-800 mb-2">Licensing &amp; Admin</div>
+            <ul class="space-y-1.5 text-slate-700 list-disc pl-4 marker:text-emerald-500">
+              <li><strong>16 years:</strong> Minimum age for G1</li>
+              <li><strong>80%:</strong> Pass mark on BOTH Signs &amp; Rules</li>
+              <li><strong>4 years:</strong> Class G experience for G1 mentor</li>
+              <li><strong>12 mos (8 w/ BDE):</strong> G1 wait; <strong>12 mos</strong> G2 wait</li>
+              <li><strong>12 a.m. – 5 a.m.:</strong> G1 driving curfew</li>
+              <li><strong>6 days:</strong> Report name/address change to MTO</li>
+              <li><strong>60 days:</strong> Exchange out-of-province licence</li>
+              <li><strong>80+ years:</strong> Renew every <strong>2 years</strong></li>
+            </ul>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="font-semibold text-emerald-800 mb-2">Speeds, Lights &amp; Distances</div>
+            <ul class="space-y-1.5 text-slate-700 list-disc pl-4 marker:text-emerald-500">
+              <li><strong>50 km/h:</strong> Unposted city/town/village</li>
+              <li><strong>80 km/h:</strong> Unposted rural road</li>
+              <li><strong>100 km/h:</strong> 400-series freeway (110 if posted)</li>
+              <li><strong>2 seconds:</strong> Minimum dry following distance</li>
+              <li><strong>30 min:</strong> Headlights before sunset / after sunrise</li>
+              <li><strong>150 m:</strong> Dim high beams (oncoming) / visibility rule</li>
+              <li><strong>60 m:</strong> Dim high beams (following)</li>
+              <li><strong>150 m:</strong> Stay back from responding fire truck</li>
+            </ul>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="font-semibold text-emerald-800 mb-2">Parking, Buses &amp; Sharing</div>
+            <ul class="space-y-1.5 text-slate-700 list-disc pl-4 marker:text-emerald-500">
+              <li><strong>3 m:</strong> Fire hydrant no-parking zone</li>
+              <li><strong>9 m / 15 m:</strong> Corner / traffic-light intersection</li>
+              <li><strong>15 m:</strong> No parking from railway crossing</li>
+              <li><strong>5 m:</strong> Stop from nearest rail for a train</li>
+              <li><strong>20 m:</strong> Stop behind flashing school bus</li>
+              <li><strong>2 m:</strong> Stop behind open streetcar doors</li>
+              <li><strong>1 m:</strong> Minimum clearance passing cyclists</li>
+              <li><strong>40 km/h or less:</strong> Slow-moving vehicle triangle</li>
+            </ul>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="font-semibold text-emerald-800 mb-2">Points, Impairment &amp; Crashes</div>
+            <ul class="space-y-1.5 text-slate-700 list-disc pl-4 marker:text-emerald-500">
+              <li><strong>0.00% BAC:</strong> G1/G2 &amp; all drivers age 21 &amp; under</li>
+              <li><strong>0.05% / 0.08%:</strong> Warn range / Criminal limit</li>
+              <li><strong>2 years:</strong> Demerit points stay from offence date</li>
+              <li><strong>9 pts / 15 pts:</strong> Suspension for Novice (60d) / Full G (30d)</li>
+              <li><strong>40+ / 50+ over:</strong> Stunt driving (&lt;80 / &ge;80 km/h)</li>
+              <li><strong>$5,000:</strong> Mandatory police crash report threshold</li>
+              <li><strong>1.5 mm:</strong> Minimum legal tire tread depth</li>
+              <li><strong>8 yrs / 36 kg / 145 cm:</strong> Booster seat graduation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="px-6 py-3.5 border-t border-slate-100 bg-slate-50/70 flex justify-end">
+        <button onclick="closeCheatSheet()" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition">
+          Close Cheat Sheet
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       RESET PROGRESS CONFIRMATION MODAL (No browser confirm() used)
+       ========================================================================= -->
+  <div id="reset-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/35 backdrop-blur-xs">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-xl w-full max-w-sm p-6 fade-enter">
+      <h3 class="text-base font-bold text-slate-900">Reset Study Progress?</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+        This will clear all completed modules, knowledge check scores, and your final exam results.
+      </p>
+      <div class="mt-5 flex items-center justify-end gap-2.5">
+        <button onclick="closeResetModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+          Cancel
+        </button>
+        <button onclick="confirmResetProgress()" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-rose-600 hover:bg-rose-700 transition">
+          Reset Everything
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       APPLICATION SCRIPT
+       ========================================================================= -->
+  <script>
+    /* =========================================================================
+     * 1. CUSTOM INLINE SVG ONTARIO ROAD SIGNS
+     *    Accurate shapes, colours, and iconography matching the MTO Handbook
+     * ========================================================================= */
+    const SIGNS = {
+      stop: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Stop Sign">
+          <polygon points="30,5 70,5 95,30 95,70 70,95 30,95 5,70 5,30" fill="#dc2626" stroke="#ffffff" stroke-width="3"/>
+          <polygon points="32,9 68,9 91,32 91,68 68,91 32,91 9,68 9,32" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+          <text x="50" y="58" text-anchor="middle" fill="#ffffff" font-family="Inter,sans-serif" font-weight="800" font-size="24" letter-spacing="1">STOP</text>
+        </svg>`,
+      yield: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Yield Sign">
+          <polygon points="8,14 92,14 50,90" fill="#ffffff" stroke="#dc2626" stroke-width="10" stroke-linejoin="round"/>
+          <text x="50" y="38" text-anchor="middle" fill="#dc2626" font-family="Inter,sans-serif" font-weight="800" font-size="14">YIELD</text>
+        </svg>`,
+      doNotEnter: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Do Not Enter Sign">
+          <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+          <circle cx="50" cy="50" r="36" fill="#dc2626"/>
+          <rect x="24" y="42" width="52" height="16" rx="2" fill="#ffffff"/>
+        </svg>`,
+      noLeftTurn: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="No Left Turn Sign">
+          <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffffff" stroke="#1e293b" stroke-width="2.5"/>
+          <path d="M62 72 V46 Q62 38 54 38 H34" fill="none" stroke="#0f172a" stroke-width="7" stroke-linecap="round"/>
+          <polygon points="24,38 38,28 38,48" fill="#0f172a"/>
+          <circle cx="50" cy="50" r="34" fill="none" stroke="#dc2626" stroke-width="7"/>
+          <line x1="26" y1="26" x2="74" y2="74" stroke="#dc2626" stroke-width="7"/>
+        </svg>`,
+      permissiveStraight: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Straight Through Only Sign">
+          <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffffff" stroke="#1e293b" stroke-width="2.5"/>
+          <circle cx="50" cy="50" r="34" fill="none" stroke="#16a34a" stroke-width="7"/>
+          <line x1="50" y1="70" x2="50" y2="34" stroke="#0f172a" stroke-width="7" stroke-linecap="round"/>
+          <polygon points="50,24 38,40 62,40" fill="#0f172a"/>
+        </svg>`,
+      twoWayLeftTurn: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Two-Way Left Turn Lane Sign">
+          <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffffff" stroke="#1e293b" stroke-width="2.5"/>
+          <!-- Upper left-turn arrow -->
+          <path d="M58 46 V32 Q58 26 50 26 H34" fill="none" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+          <polygon points="24,26 37,18 37,34" fill="#0f172a"/>
+          <!-- Lower opposite left-turn arrow -->
+          <path d="M42 54 V68 Q42 74 50 74 H66" fill="none" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+          <polygon points="76,74 63,66 63,82" fill="#0f172a"/>
+        </svg>`,
+      hov: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="HOV 2+ Lane Sign">
+          <rect x="12" y="4" width="76" height="92" rx="7" fill="#ffffff" stroke="#1e293b" stroke-width="2.5"/>
+          <rect x="14" y="6" width="72" height="32" rx="4" fill="#0f172a"/>
+          <polygon points="50,11 61,22 50,33 39,22" fill="none" stroke="#ffffff" stroke-width="3"/>
+          <text x="50" y="62" text-anchor="middle" fill="#0f172a" font-family="Inter,sans-serif" font-weight="800" font-size="22">2+</text>
+          <text x="50" y="82" text-anchor="middle" fill="#0f172a" font-family="Inter,sans-serif" font-weight="700" font-size="13">HOV</text>
+        </svg>`,
+      pedestrianCrossover: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Pedestrian Crossover Sign">
+          <rect x="12" y="4" width="76" height="92" rx="7" fill="#ffffff" stroke="#1e293b" stroke-width="2.5"/>
+          <text x="50" y="21" text-anchor="middle" fill="#0f172a" font-family="Inter,sans-serif" font-weight="800" font-size="11">STOP FOR</text>
+          <circle cx="50" cy="36" r="5" fill="#0f172a"/>
+          <path d="M50 42 L48 58 L40 74 M48 58 L58 74 M41 48 L50 45 L59 52" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <line x1="22" y1="84" x2="78" y2="84" stroke="#0f172a" stroke-width="4" stroke-dasharray="6,4"/>
+        </svg>`,
+      schoolZone: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="School Zone Pentagon Sign">
+          <polygon points="50,8 90,38 78,90 22,90 10,38" fill="#bef264" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="42" cy="40" r="5" fill="#0f172a"/>
+          <path d="M42 46 L42 62 L35 76 M42 62 L49 76 M34 54 L49 52" stroke="#0f172a" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <circle cx="62" cy="46" r="4" fill="#0f172a"/>
+          <path d="M62 51 L62 65 L56 76 M62 65 L68 76 M55 57 L68 57" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        </svg>`,
+      slippery: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Slippery When Wet Sign">
+          <polygon points="50,5 95,50 50,95 5,50" fill="#facc15" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="36" y="30" width="28" height="14" rx="4" fill="#0f172a"/>
+          <rect x="38" y="42" width="6" height="6" rx="1" fill="#0f172a"/>
+          <rect x="56" y="42" width="6" height="6" rx="1" fill="#0f172a"/>
+          <path d="M39 51 C33 58, 46 64, 39 74" fill="none" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M61 51 C55 58, 68 64, 61 74" fill="none" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>`,
+      sharpCurve: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Sharp Right Turn Sign">
+          <polygon points="50,5 95,50 50,95 5,50" fill="#facc15" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M40 72 V44 H62" fill="none" stroke="#0f172a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="74,44 57,33 57,55" fill="#0f172a"/>
+        </svg>`,
+      dividedEnds: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Divided Highway Ends Sign">
+          <polygon points="50,5 95,50 50,95 5,50" fill="#facc15" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+          <!-- Median island at top -->
+          <path d="M44 26 L56 26 L54 46 Q50 52 46 46 Z" fill="#0f172a"/>
+          <!-- Left downward arrow -->
+          <path d="M38 30 V48 L43 58 V72" fill="none" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round"/>
+          <polygon points="43,78 37,68 49,68" fill="#0f172a"/>
+          <!-- Right upward arrow -->
+          <path d="M57 74 V58 L62 48 V34" fill="none" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round"/>
+          <polygon points="62,27 56,37 68,37" fill="#0f172a"/>
+        </svg>`,
+      construction: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Construction Road Work Sign">
+          <polygon points="50,5 95,50 50,95 5,50" fill="#f97316" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="52" cy="34" r="5" fill="#0f172a"/>
+          <path d="M52 40 L48 56 L40 70 M48 56 L58 70 M44 47 L62 54 L68 68" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <polygon points="62,72 74,72 68,62" fill="#0f172a"/>
+        </svg>`,
+      railroad: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Railway Crossing Sign">
+          <line x1="18" y1="18" x2="82" y2="82" stroke="#dc2626" stroke-width="15" stroke-linecap="round"/>
+          <line x1="82" y1="18" x2="18" y2="82" stroke="#dc2626" stroke-width="15" stroke-linecap="round"/>
+          <line x1="18" y1="18" x2="82" y2="82" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+          <line x1="82" y1="18" x2="18" y2="82" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+        </svg>`,
+      slowMoving: `
+        <svg class="w-16 h-16 mx-auto drop-shadow-xs" viewBox="0 0 100 100" aria-label="Slow Moving Vehicle Sign">
+          <polygon points="50,14 90,84 10,84" fill="#f97316" stroke="#dc2626" stroke-width="10" stroke-linejoin="round"/>
+        </svg>`
+    };
+
+    /* =========================================================================
+     * 2. MINIMALIST INLINE SVG UI ICONS
+     * ========================================================================= */
+    const ICONS = {
+      card: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg>`,
+      sign: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 12l10 10 10-10L12 2z"/></svg>`,
+      road: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 20L9 4m9 16L15 4M12 7v2m0 4v2m0 4v1"/></svg>`,
+      light: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="3"/><circle cx="12" cy="7" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="17" r="1.5"/></svg>`,
+      speed: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l4-4m-4 4a2 2 0 11-2-2m9.17 5A9 9 0 104.83 17h14.34z"/></svg>`,
+      turn: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 14l-4-4 4-4m-4 4h10a4 4 0 014 4v5"/></svg>`,
+      highway: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19L8 5m12 14L16 5M12 6v3m0 4v3m0 3v1"/></svg>`,
+      bus: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="14" rx="2"/><path d="M4 11h16M7 18v2m10-2v2M8 15h.01M16 15h.01"/></svg>`,
+      shield: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z"/></svg>`,
+      alert: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9L2.6 17.3A1.7 1.7 0 004.1 20h15.8a1.7 1.7 0 001.5-2.7L13.7 3.9a1.7 1.7 0 00-3.4 0z"/></svg>`,
+      quiz: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+      poem: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>`,
+      trophy: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 21h8m-4-4v4M6 4h12v4a6 6 0 01-12 0V4zM6 6H4a2 2 0 000 4h2m12-4h2a2 2 0 010 4h-2"/></svg>`
+    };
+
+    /* =========================================================================
+     * 3. DENSE, SEQUENTIAL MTO CURRICULUM & KNOWLEDGE CHECKS
+     *    10 Full MTO Modules + 9 Knowledge Checks (starting after Module 2)
+     *    + 1 Pre-Exam Memory Poem + 1 Final Readiness Exam (21 total steps)
+     * ========================================================================= */
+    const CURRICULUM = [
+      /* ---------------- MODULE 1 ---------------- */
+      {
+        id: 'm1',
+        type: 'lesson',
+        moduleNum: 1,
+        icon: ICONS.card,
+        title: 'Licensing & Graduated System (G1, G2, G)',
+        subtitle: 'Eligibility, G1/G2 restrictions, licence classes, road tests, and legal duties',
+        readTime: '5 min read',
+        content: `
+          <div class="grid sm:grid-cols-3 gap-3 mb-6">
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div class="text-xs font-medium text-slate-500">Minimum Age</div>
+              <div class="text-2xl font-bold text-slate-900 mt-0.5">16 Years</div>
+              <div class="text-xs text-slate-500 mt-1">Pass vision + knowledge test</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div class="text-xs font-medium text-slate-500">G1 Pass Mark</div>
+              <div class="text-2xl font-bold text-emerald-600 mt-0.5">80%</div>
+              <div class="text-xs text-slate-500 mt-1">Road Signs &amp; Rules of the Road</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div class="text-xs font-medium text-slate-500">Completion Window</div>
+              <div class="text-2xl font-bold text-slate-900 mt-0.5">5 Years</div>
+              <div class="text-xs text-slate-500 mt-1">From G1 issue to full Class G</div>
+            </div>
+          </div>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">G1 Licence (Level One) Mandatory Conditions</h3>
+            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+              A Class G1 licence lets you drive a car, van, or small truck (up to 11,000 kg gross weight, or towing a trailer up to 4,600 kg) only when strictly following all five statutory rules:
+            </p>
+            <ul class="space-y-2.5 text-sm text-slate-700">
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">1.</span><span><strong>Zero Blood Alcohol &amp; Zero Drugs:</strong> Your BAC must be <strong>0.00%</strong> and you cannot have any presence of cannabis or other illegal/impairing drugs.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">2.</span><span><strong>Qualified Accompanying Driver:</strong> Must sit in the <strong>front passenger seat</strong>, hold a full <strong>Class G</strong> licence (or higher) with at least <strong>4 years</strong> of driving experience (indicated by 4 dots on their licence), and have a BAC <strong>under 0.05%</strong> (or 0.00% if age 21 or under).</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">3.</span><span><strong>No High-Speed Expressways:</strong> Prohibited from driving on 400-series highways (e.g., 401, 400, 404, QEW, DVP, Gardiner) or any high-speed expressway with a limit over 80 km/h—<em>unless</em> accompanied by a licensed driving instructor.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">4.</span><span><strong>Nighttime Curfew:</strong> No driving between <strong>midnight (12:00 a.m.) and 5:00 a.m.</strong></span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">5.</span><span><strong>Seatbelts:</strong> Every passenger must have a working seatbelt (limit passengers to the number of working seatbelts).</span></li>
+            </ul>
+            <div class="mt-4 p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/70 text-xs text-emerald-900">
+              <strong>Waiting Period &amp; Road Tests:</strong> Hold G1 for <strong>12 months</strong> before taking the G1 exit road test (reduced to <strong>8 months</strong> with a Ministry-approved Beginner Driver Education [BDE] course). Hold G2 for <strong>12 months</strong> before the G2 exit (highway) road test.
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">G2 Licence (Level Two) Rules &amp; Teen Passenger Limits</h3>
+            <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+              With a G2, you can drive solo on any Ontario road at any time—but you must still maintain <strong>0.00% BAC and zero drugs</strong>, and ensure working seatbelts for all occupants.
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 text-slate-500">
+                    <th class="py-2.5 pr-4 font-semibold">G2 Driver Age 19 or Under (12 a.m. – 5 a.m.)</th>
+                    <th class="py-2.5 font-semibold">Max Passengers Aged 19 or Under</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-slate-700">
+                  <tr>
+                    <td class="py-2.5 pr-4">First <strong>6 months</strong> of G2</td>
+                    <td class="py-2.5"><strong>1 passenger</strong> aged 19 or under</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-4">After <strong>6 months</strong> (until full G or turning 20)</td>
+                    <td class="py-2.5"><strong>3 passengers</strong> aged 19 or under</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-3 text-xs text-slate-500">
+              <strong>Exemptions:</strong> Passenger limits do not apply if accompanied by a 4+ year Class G driver in the front seat, or if the passengers are immediate family members.
+            </p>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Licence Classes, Senior Renewals &amp; Vehicle Requirements</h3>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Class G vs. Other Classes:</strong> Class G covers cars/vans/small trucks (&le;11,000 kg); Class M covers motorcycles (M1/M2/M); Classes A–F cover commercial trucks, buses, and ambulances.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Senior Drivers (Age 80+):</strong> Must renew their licence every <strong>2 years</strong> by completing a vision test, driving record review, and in-class education session (with a short screening exercise).</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Vehicle Registration &amp; Insurance:</strong> Every vehicle driven on Ontario roads must be registered, display valid licence plates, carry mandatory third-party liability insurance, and pass a <strong>Safety Standards Certificate (SSC)</strong> inspection when ownership transfers.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Medical Conditions:</strong> Doctors and optometrists are legally required to report medical or vision conditions that may make driving unsafe; you must also obey corrective-lens restrictions (Condition X) on your licence.</span></li>
+            </ul>
+          </section>
+
+          <section class="bg-amber-50/70 rounded-2xl border border-amber-200/80 p-5 text-sm text-amber-950">
+            <div class="font-semibold mb-1.5 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              Essential Administrative Rules (Frequently Tested)
+            </div>
+            <ul class="space-y-1.5 text-xs sm:text-sm text-amber-900/90 list-disc pl-5 marker:text-amber-600">
+              <li>You must notify the MTO of a <strong>name or address change within 6 days</strong>.</li>
+              <li>You must always carry your <strong>driver's licence, vehicle permit (ownership — or true copy), and pink liability insurance card</strong> whenever driving, and surrender them to a police officer on demand.</li>
+              <li>New Ontario residents have <strong>60 days</strong> to exchange a valid out-of-province licence (visitors may drive up to <strong>3 months</strong> with a valid foreign licence or International Driving Permit).</li>
+            </ul>
+          </section>
+        `
+      },
+
+      /* ---------------- MODULE 2 ---------------- */
+      {
+        id: 'm2',
+        type: 'lesson',
+        moduleNum: 2,
+        icon: ICONS.sign,
+        title: 'Traffic Signs: Shapes, Colours & Regulatory',
+        subtitle: 'Decode any Ontario sign by shape, colour, stopping vs. standing vs. parking, and zones',
+        readTime: '6 min read',
+        content: `
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">The Official MTO Shape &amp; Colour Code</h3>
+            <p class="text-sm text-slate-600 mb-4">Half of the G1 exam tests road signs. Memorizing shape + colour lets you identify even unfamiliar signs immediately:</p>
+            <div class="grid sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="font-semibold text-rose-700">Octagon (8 sides, Red):</span> Exclusively <strong>STOP</strong>. Full stop required.
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="font-semibold text-rose-700">Inverted Triangle (Red/White):</span> Exclusively <strong>YIELD</strong>. Give right-of-way.
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="font-semibold text-slate-900">Vertical Rectangle (White/Black):</span> <strong>Regulatory</strong> — states a law (speed, turns, parking, lane use).
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="font-semibold text-emerald-700">Green Circle vs. Red Circle + Slash:</span> Green circle = <strong>Permissive</strong> (you MUST do this). Red slash = <strong>Prohibitive</strong> (DO NOT do this).
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="font-semibold text-amber-700">Yellow Diamond:</span> <strong>Warning</strong> of permanent hazards or changing road conditions ahead.
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="font-semibold text-orange-700">Orange Diamond:</span> <strong>Temporary Condition</strong> — construction / road work zone.
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="font-semibold text-lime-700">Fluorescent Yellow-Green Pentagon:</span> <strong>School Zone</strong> — watch for children and obey posted limits.
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <span class="font-semibold text-sky-700">Blue / Green / Brown:</span> Blue = <strong>Services / Accessible / Bilingual</strong>; Green = <strong>Direction / Distance</strong>; Brown = <strong>Parks / Recreation</strong>.
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-4">High-Frequency Regulatory Signs (Visual Gallery)</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.stop}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Stop Sign</div>
+                <p class="text-[11px] text-slate-500 mt-1">Come to a complete stop at the stop line, crosswalk, or before the intersection.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.yield}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Yield Right-of-Way</div>
+                <p class="text-[11px] text-slate-500 mt-1">Slow down and stop if necessary; let cross traffic &amp; pedestrians pass first.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.doNotEnter}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Do Not Enter</div>
+                <p class="text-[11px] text-slate-500 mt-1">Do not enter this road or ramp; traffic is moving toward you.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.noLeftTurn}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">No Left Turn</div>
+                <p class="text-[11px] text-slate-500 mt-1">Red circle with slash prohibits the shown action (left turn forbidden).</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.permissiveStraight}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Straight Only</div>
+                <p class="text-[11px] text-slate-500 mt-1">Green circle = mandatory/permitted action only. Do not turn.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.twoWayLeftTurn}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Two-Way Left Turn</div>
+                <p class="text-[11px] text-slate-500 mt-1">Centre lane shared by both directions solely for making left turns.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.hov}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">HOV Lane (2+)</div>
+                <p class="text-[11px] text-slate-500 mt-1">Reserved for vehicles with 2+ occupants, buses, or green-plate EVs.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.pedestrianCrossover}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Pedestrian Crossover</div>
+                <p class="text-[11px] text-slate-500 mt-1">Must stop and wait until pedestrians have completely crossed the road.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.schoolZone}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">School Zone</div>
+                <p class="text-[11px] text-slate-500 mt-1">Five-sided pentagon warns of a school zone. Slow down &amp; watch for kids.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">No Parking vs. No Standing vs. No Stopping &amp; Special Zones</h3>
+            <div class="grid sm:grid-cols-3 gap-3 mb-4 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1">No Parking (P slashed)</div>
+                <p class="text-slate-600">You may stop briefly <strong>only</strong> while actively loading/unloading passengers or merchandise.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200/70">
+                <div class="font-semibold text-amber-950 mb-1">No Standing</div>
+                <p class="text-amber-900/90">Stricter: you may stop <strong>only</strong> to pick up or drop off <strong>passengers</strong> (no waiting or cargo loading).</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-rose-50/70 border border-rose-200/70">
+                <div class="font-semibold text-rose-950 mb-1">No Stopping (Octagon slashed)</div>
+                <p class="text-rose-900/90">Strictest: do <strong>not</strong> stop for any reason—even briefly—unless directed by police, signals, or to avoid a crash.</p>
+              </div>
+            </div>
+            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+              <li><strong>Community Safety Zone:</strong> Special white/blue sign marking areas near schools, parks, or hospitals—<strong>many traffic fines (including speeding) are doubled</strong>.</li>
+              <li><strong>Accessible Parking Sign (Wheelchair):</strong> Reserved strictly for vehicles displaying a valid Ontario Accessible Parking Permit (fine up to $5,000 for misuse).</li>
+              <li><strong>Keep Right of Traffic Island:</strong> Black curved arrow pointing right around a solid island means keep to the right of the divider.</li>
+              <li><strong>Maximum vs. Advisory Speed:</strong> White rectangular sign = <strong>legal maximum</strong>. Yellow square sign under a curve/ramp = <strong>recommended safe speed</strong> in good conditions.</li>
+            </ul>
+          </section>
+        `
+      },
+      {
+        id: 'q2',
+        type: 'quiz',
+        moduleNum: 1,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 1: Licensing & Regulatory Signs',
+        subtitle: '3 questions covering Modules 1 & 2',
+        questions: [
+          {
+            q: 'As a G1 driver, what are the requirements for your accompanying driver?',
+            options: [
+              'Any licensed driver over age 21 sitting anywhere in the car',
+              'A full Class G driver with at least 4 years experience, in the front passenger seat, with BAC under 0.05%',
+              'A G2 or G driver with at least 2 years experience and 0.00% BAC',
+              'Any Class G driver with 4 years experience, even if their BAC is 0.07%'
+            ],
+            correct: 1,
+            explanation: 'Your accompanying driver must sit in the front passenger seat, hold a valid Class G (or higher) licence with at least 4 years of driving experience, and have a BAC below 0.05% (or 0.00% if age 21 or under).'
+          },
+          {
+            q: 'What does this sign mean?',
+            visual: SIGNS.permissiveStraight,
+            options: [
+              'One-way street ahead',
+              'You must proceed straight through only (no turns allowed)',
+              'Passing is permitted ahead',
+              'Highway ramp entrance'
+            ],
+            correct: 1,
+            explanation: 'A green circle on a white regulatory sign indicates a permissive/mandatory action—here, you may only go straight through.'
+          },
+          {
+            q: 'In a "No Standing" zone, when are you legally permitted to stop your vehicle?',
+            options: [
+              'Never, for any reason',
+              'Only while actively picking up or dropping off passengers',
+              'For up to 15 minutes with hazard lights flashing',
+              'While unloading commercial goods'
+            ],
+            correct: 1,
+            explanation: 'No Standing allows stopping solely to actively pick up or drop off passengers. No Stopping forbids stopping entirely, while No Parking allows brief loading of passengers or merchandise.'
+          }
+        ]
+      },
+
+      /* ---------------- MODULE 3 ---------------- */
+      {
+        id: 'm3',
+        type: 'lesson',
+        moduleNum: 3,
+        icon: ICONS.road,
+        title: 'Warning Signs & Pavement Markings',
+        subtitle: 'Hazards, construction, slow-moving vehicles, reversible lanes, and road lines',
+        readTime: '6 min read',
+        content: `
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-4">Essential Warning, Construction &amp; Special Signs</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.slippery}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Slippery When Wet</div>
+                <p class="text-[11px] text-slate-500 mt-1">Slow down; avoid sudden braking or sharp steering in rain/ice.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.sharpCurve}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Sharp Right Turn</div>
+                <p class="text-[11px] text-slate-500 mt-1">Road turns sharply right ahead. Reduce speed before entering.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.dividedEnds}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Divided Highway Ends</div>
+                <p class="text-[11px] text-slate-500 mt-1">Keep right; two-way traffic will no longer be separated by a median.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.construction}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Road Work Ahead</div>
+                <p class="text-[11px] text-slate-500 mt-1">Orange diamond = construction zone. Speeding fines are <strong>doubled</strong> when workers are present!</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/60 text-center">
+                ${SIGNS.railroad}
+                <div class="mt-2.5 text-xs font-semibold text-slate-900">Railway Crossing</div>
+                <p class="text-[11px] text-slate-500 mt-1">Large X marks level crossing. Stop at least <strong>5 metres</strong> from the nearest rail if a train is coming.</p>
+              </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70 text-xs text-slate-700">
+              <div class="font-semibold text-slate-900 mb-2">Other Common Yellow Warning Diamonds to Know:</div>
+              <ul class="space-y-1.5 list-disc pl-4 marker:text-slate-400">
+                <li><strong>Checkerboard Sign (Yellow/Black):</strong> Road ends abruptly—turn left or right.</li>
+                <li><strong>Deer / Moose:</strong> Watch for wildlife, especially at dawn and dusk.</li>
+                <li><strong>Steep Hill (truck on slope):</strong> Shift to a lower gear.</li>
+                <li><strong>Pavement Ends / Bump / Narrow Bridge / Low Clearance / Winding Road / Hidden Intersection:</strong> Reduce speed and stay alert.</li>
+                <li><strong>Overhead Reversible Lanes:</strong> Green downward arrow = lane open in your direction; Red X = lane closed (oncoming traffic).</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Pavement Markings: Yellow Lines, White Lines &amp; Crosswalks</h3>
+            <p class="text-sm text-slate-600 mb-4">One simple rule separates almost every pavement marking question on the exam:</p>
+            <div class="grid sm:grid-cols-2 gap-4 text-sm">
+              <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80">
+                <div class="font-semibold text-amber-900 mb-2">YELLOW Lines = Opposite Directions</div>
+                <ul class="space-y-2 text-xs text-amber-950/90 list-disc pl-4 marker:text-amber-600">
+                  <li><strong>Broken Yellow:</strong> Passing is permitted when the way ahead is clear.</li>
+                  <li><strong>Solid Yellow:</strong> Unsafe to pass.</li>
+                  <li><strong>Double Solid Yellow:</strong> Unsafe to pass from either direction.</li>
+                  <li><strong>Solid + Broken Yellow:</strong> Pass <em>only</em> if the <strong>broken line is on your side</strong>.</li>
+                  <li><strong>Left Edge of Divided Road:</strong> Solid yellow line marks the left boundary next to a median.</li>
+                </ul>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="font-semibold text-slate-900 mb-2">WHITE Lines = Same Direction</div>
+                <ul class="space-y-2 text-xs text-slate-700 list-disc pl-4 marker:text-slate-400">
+                  <li><strong>Broken White:</strong> You may change lanes when safe.</li>
+                  <li><strong>Solid White:</strong> Stay in your lane; lane changing is discouraged/unsafe.</li>
+                  <li><strong>Painted Diamond:</strong> Reserved lane (HOV, bus, or bicycle lane).</li>
+                  <li><strong>Painted Islands / Chevrons:</strong> Diagonal white/yellow stripes—do NOT drive or park over them.</li>
+                  <li><strong>Stop Line &amp; Crosswalks:</strong> Thick white stop line marks where to stop; parallel lines or zebra/ladder bars mark crosswalks.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        `
+      },
+      {
+        id: 'q3',
+        type: 'quiz',
+        moduleNum: 2,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 2: Warnings & Markings',
+        subtitle: '3 questions on hazards, slow vehicles, and road lines',
+        questions: [
+          {
+            q: 'An orange triangle with a red border mounted on the back of a vehicle means:',
+            visual: SIGNS.slowMoving,
+            options: [
+              'The vehicle is carrying hazardous materials',
+              'The vehicle is a slow-moving vehicle travelling at 40 km/h or less',
+              'The vehicle is stopped for an emergency',
+              'The vehicle is making frequent stops like a school bus'
+            ],
+            correct: 1,
+            explanation: 'The slow-moving vehicle sign warns drivers that the vehicle (such as farm machinery or a horse-drawn carriage) travels at 40 km/h or less.'
+          },
+          {
+            q: 'When you see a solid yellow line next to a broken yellow line in the centre of a two-way road, when may you pass?',
+            options: [
+              'Whenever the road ahead is straight',
+              'Only if the solid line is on your side',
+              'Only if the broken line is on your side and it is safe to pass',
+              'Never—yellow lines always prohibit passing'
+            ],
+            correct: 2,
+            explanation: 'Yellow lines separate opposite-direction traffic. When paired, you may pass only if the broken line is on your side of the centre.'
+          },
+          {
+            q: 'What does a yellow-and-black checkerboard sign at the end of a road indicate?',
+            options: [
+              'A railway crossing is ahead',
+              'The road ends abruptly—you must turn left or right',
+              'A steep hill is ahead',
+              'A school crossing is ahead'
+            ],
+            correct: 1,
+            explanation: 'A yellow-and-black checkerboard sign warns that the road does not continue straight ahead and you must turn left or right.'
+          }
+        ]
+      },
+
+      /* ---------------- MODULE 4 ---------------- */
+      {
+        id: 'm4',
+        type: 'lesson',
+        moduleNum: 4,
+        icon: ICONS.light,
+        title: 'Traffic Lights, Signals & Right-of-Way',
+        subtitle: 'Flashing lights, pedestrian signals, police control, intersections, and roundabouts',
+        readTime: '6 min read',
+        content: `
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Decoding Traffic Signal Lights &amp; Pedestrian Signals</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 text-slate-500">
+                    <th class="py-2 pr-4 font-semibold">Signal</th>
+                    <th class="py-2 font-semibold">Required Action</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-slate-700">
+                  <tr>
+                    <td class="py-2.5 pr-4 font-semibold text-amber-600">Solid Amber (Yellow)</td>
+                    <td class="py-2.5"><strong>Stop</strong> if you can do so safely; otherwise proceed with caution.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-4 font-semibold text-emerald-600">Flashing Green / Green Arrow</td>
+                    <td class="py-2.5"><strong>Advance Green:</strong> Protected turn/movement while oncoming traffic is held by a red light.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-4 font-semibold text-rose-600">Flashing Red</td>
+                    <td class="py-2.5">Treat exactly like a <strong>STOP sign</strong>—full stop, then proceed when safe.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-4 font-semibold text-amber-600">Flashing Amber</td>
+                    <td class="py-2.5">Slow down and proceed through the intersection with caution.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-4 font-semibold text-slate-800">Blank / Out-of-Order Lights</td>
+                    <td class="py-2.5">Treat the intersection as an <strong>all-way stop</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-4 font-semibold text-slate-800">White Vertical Bar</td>
+                    <td class="py-2.5"><strong>Transit Priority Signal:</strong> Only transit vehicles may go; other vehicles stay stopped.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-4 font-semibold text-orange-600">Flashing Hand / Countdown</td>
+                    <td class="py-2.5">Pedestrians must <strong>not start crossing</strong>; those already in the crosswalk may finish crossing.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-3 text-xs text-slate-500">
+              <strong>Hierarchy of Control:</strong> Directions from a <strong>police officer or traffic control person</strong> ALWAYS override traffic lights, stop signs, and right-of-way rules.
+            </p>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Right-of-Way Rules at Intersections &amp; Roundabouts</h3>
+            <ul class="space-y-2.5 text-sm text-slate-700">
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Uncontrolled Intersection (no signs/lights):</strong> Yield to any vehicle that arrives first. If two vehicles arrive at the same time, yield to the vehicle on your <strong>RIGHT</strong>.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>All-Way Stop:</strong> First vehicle to come to a complete stop goes first. If simultaneous, yield to the vehicle on your <strong>RIGHT</strong>.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Turning Left:</strong> Always yield to oncoming traffic going straight or turning right, and to pedestrians in the crosswalk.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Private Driveway / Alley:</strong> Always stop before crossing the sidewalk and yield to both pedestrians and roadway traffic.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Roundabouts:</strong> Always travel <strong>counter-clockwise</strong>. Yield to traffic already inside. In multi-lane roundabouts, use the <strong>right lane</strong> to turn right or go straight, and the <strong>left lane</strong> to turn left, go straight, or make a U-turn. Never change lanes inside; signal <strong>right</strong> just before exiting.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Blind Pedestrians &amp; Funeral Processions:</strong> Always yield to pedestrians using a white cane or guide dog. Do not cut through a funeral procession.</span></li>
+            </ul>
+          </section>
+
+          <section class="bg-sky-50/70 rounded-2xl border border-sky-200/80 p-5 text-sm text-sky-950">
+            <div class="font-semibold mb-1">Pedestrian Crossovers (PXO) &amp; School Crossings</div>
+            <p class="text-xs sm:text-sm text-sky-900/90 leading-relaxed">
+              At a <strong>Pedestrian Crossover</strong> or where a <strong>school crossing guard</strong> holds up a stop sign, drivers must stop and remain stopped until the pedestrian (and crossing guard) has <strong>completely crossed the entire roadway</strong> onto the sidewalk—not just cleared your lane! Penalty: <strong>4 demerit points</strong> + up to $1,000 fine.
+            </p>
+          </section>
+        `
+      },
+      {
+        id: 'q4',
+        type: 'quiz',
+        moduleNum: 3,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 3: Lights & Right-of-Way',
+        subtitle: '3 questions on signals, intersections, and crossovers',
+        questions: [
+          {
+            q: 'Two vehicles arrive at an uncontrolled intersection at the exact same time. Who has the right-of-way?',
+            options: [
+              'The larger vehicle',
+              'The vehicle on the left',
+              'The vehicle on the right',
+              'The vehicle travelling faster'
+            ],
+            correct: 2,
+            explanation: 'At both uncontrolled intersections and all-way stops, when two vehicles arrive simultaneously, the driver on the left must yield to the vehicle on the right.'
+          },
+          {
+            q: 'At a marked Pedestrian Crossover (PXO) in Ontario, when may you resume driving after a pedestrian enters the crossing?',
+            options: [
+              'As soon as the pedestrian has cleared your lane',
+              'As soon as the pedestrian passes the centre line',
+              'Only after the pedestrian has completely crossed the entire roadway to the other side',
+              'After waiting 3 seconds'
+            ],
+            correct: 2,
+            explanation: 'At pedestrian crossovers and school crossings with a guard, Ontario law requires you to wait until the pedestrian has completely exited the roadway.'
+          },
+          {
+            q: 'A police officer is directing traffic at an intersection and waves you through while the traffic light is red. What must you do?',
+            options: [
+              'Wait until the light turns green',
+              'Obey the police officer and proceed carefully',
+              'Stop and sound your horn',
+              'Turn right only'
+            ],
+            correct: 1,
+            explanation: 'Directions from a police officer or authorized traffic control person always override traffic lights and road signs.'
+          }
+        ]
+      },
+
+      /* ---------------- MODULE 5 ---------------- */
+      {
+        id: 'm5',
+        type: 'lesson',
+        moduleNum: 5,
+        icon: ICONS.speed,
+        title: 'Speed Limits, Visibility, Weather & Braking',
+        subtitle: 'Unposted speeds, 2-second rule, stopping distance, headlights, and winter driving',
+        readTime: '6 min read',
+        content: `
+          <div class="grid sm:grid-cols-3 gap-3 mb-6">
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div class="text-xs text-slate-500">Unposted City/Town</div>
+              <div class="text-2xl font-bold text-slate-900 mt-0.5">50 km/h</div>
+              <div class="text-xs text-slate-500 mt-1">Cities, towns, villages</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div class="text-xs text-slate-500">Unposted Rural Road</div>
+              <div class="text-2xl font-bold text-slate-900 mt-0.5">80 km/h</div>
+              <div class="text-xs text-slate-500 mt-1">Outside built-up areas</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div class="text-xs text-slate-500">400-Series Freeway</div>
+              <div class="text-2xl font-bold text-emerald-600 mt-0.5">100 km/h</div>
+              <div class="text-xs text-slate-500 mt-1">110 km/h where posted</div>
+            </div>
+          </div>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Following Distance, Space Cushion &amp; Stopping Distance</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-3">
+              In ideal dry daylight conditions, stay at least <strong>2 seconds</strong> behind the vehicle ahead (count <em>"one-thousand-and-one, one-thousand-and-two"</em> from a fixed roadside marker). Maintain a <strong>space cushion</strong> around your vehicle and check mirrors every <strong>5 seconds</strong>.
+            </p>
+            <div class="grid sm:grid-cols-2 gap-3 text-xs text-slate-700">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <strong>Stopping Distance = Perception + Reaction + Braking.</strong> Doubling your speed <strong>quadruples (4&times;)</strong> your braking distance!
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <strong>Increase to 3–4+ seconds</strong> in rain, snow, ice, fog, darkness, or when following motorcycles or large transport trucks.
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Headlight &amp; Night Driving Laws (Must Memorize)</h3>
+            <ul class="space-y-2.5 text-sm text-slate-700">
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>When required:</strong> Turn on full headlights and taillights from <strong>30 minutes before sunset to 30 minutes after sunrise</strong>, AND anytime visibility is less than <strong>150 metres</strong> (fog, heavy rain, snow). Daytime running lights alone do NOT light your taillights!</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Dimming High Beams (Oncoming):</strong> Switch to low beams within <strong>150 metres</strong> of an approaching vehicle.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Dimming High Beams (Following):</strong> Switch to low beams within <strong>60 metres</strong> of following another vehicle.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>In Fog &amp; Against Glare:</strong> Always use <strong>low beams</strong> in fog. Against oncoming high beams, look slightly down and to the <strong>right edge</strong> of your lane. Never "overdrive" your headlights (always be able to stop within the lit distance ahead).</span></li>
+            </ul>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-2xs text-sm">
+            <h3 class="font-semibold text-slate-900 mb-2">Winter Driving &amp; Braking Systems (ABS vs. Standard)</h3>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-600 leading-relaxed list-disc pl-5 marker:text-emerald-600">
+              <li><strong>Bridges &amp; Overpasses Freeze First:</strong> Cold air circulates above and below them; watch for invisible <strong>black ice</strong> (road looks shiny and wet).</li>
+              <li><strong>Clear All Snow &amp; Ice:</strong> Clean windows, mirrors, lights, roof, and hood before driving—flying snow can blind other drivers and carries a fine.</li>
+              <li><strong>ABS Braking:</strong> Apply firm, continuous pressure—<strong>do NOT pump the pedal</strong>, even if it vibrates or clicks. For vehicles <em>without</em> ABS, use threshold braking (firm pressure just short of wheel lock).</li>
+            </ul>
+          </section>
+        `
+      },
+      {
+        id: 'q5',
+        type: 'quiz',
+        moduleNum: 4,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 4: Speeds, Lights & Winter',
+        subtitle: '3 questions on high beams, speed limits, and weather',
+        questions: [
+          {
+            q: 'When approaching an oncoming vehicle at night, you must switch from high beams to low beams within:',
+            options: ['60 metres', '100 metres', '150 metres', '300 metres'],
+            correct: 2,
+            explanation: 'Switch to low beams within 150 metres of an oncoming vehicle, and within 60 metres when following behind another vehicle.'
+          },
+          {
+            q: 'If there is no posted speed limit sign on a road inside a city, town, or village in Ontario, the maximum speed limit is:',
+            options: ['40 km/h', '50 km/h', '60 km/h', '80 km/h'],
+            correct: 1,
+            explanation: 'Unless otherwise posted, the default speed limit is 50 km/h in cities, towns, and villages, and 80 km/h outside built-up areas.'
+          },
+          {
+            q: 'Which road surfaces tend to freeze FIRST in winter temperatures?',
+            options: [
+              'Gravel country roads',
+              'Bridges, overpasses, and shaded areas',
+              'Busy downtown streets',
+              'Paved parking lots'
+            ],
+            correct: 1,
+            explanation: 'Bridges and overpasses freeze before regular roadways because cold air circulates both above and underneath the bridge deck.'
+          }
+        ]
+      },
+
+      /* ---------------- MODULE 6 ---------------- */
+      {
+        id: 'm6',
+        type: 'lesson',
+        moduleNum: 6,
+        icon: ICONS.turn,
+        title: 'Turning, Hand Signals, Passing & Parking',
+        subtitle: 'Red-light turns, hand signals, three-point turns, illegal passing, and parking distances',
+        readTime: '6 min read',
+        content: `
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Turns, Red-Light Rules &amp; Hand Signals</h3>
+            <ul class="space-y-2 text-sm text-slate-700 mb-4">
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Right Turn on Red:</strong> Permitted in Ontario unless a sign prohibits it—first come to a <strong>complete stop</strong> and yield to pedestrians and cross traffic.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Left Turn on Red:</strong> Permitted <em>only</em> from a <strong>one-way street onto another one-way street</strong>, after a complete stop and yielding (unless prohibited).</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Left-Turn Wheel Position:</strong> While waiting to turn left in an intersection, keep your front wheels pointed <strong>straight ahead</strong> so if rear-ended, you are not pushed into oncoming traffic.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Three-Point Turn &amp; Backing:</strong> Only do a three-point turn when the road is clear in both directions and not near a curve/hill. When backing up, look directly over your right shoulder through the rear window—never rely solely on mirrors or a backup camera.</span></li>
+            </ul>
+            <div class="grid sm:grid-cols-3 gap-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1">Left Turn Hand Signal</div>
+                <p class="text-slate-600">Left arm extended <strong>straight out</strong> horizontally.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1">Right Turn Hand Signal</div>
+                <p class="text-slate-600">Left arm extended out and bent <strong>UPWARD</strong> at 90&deg;.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1">Slow / Stop Hand Signal</div>
+                <p class="text-slate-600">Left arm extended out and bent <strong>DOWNWARD</strong> at 90&deg;.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Where Passing &amp; U-Turns Are Illegal</h3>
+            <p class="text-sm text-slate-600 mb-2.5">Never pass another vehicle (or make a U-turn) when:</p>
+            <ul class="space-y-1.5 text-sm text-slate-700 list-disc pl-5">
+              <li>Within <strong>30 metres</strong> of a pedestrian crossover, bridge, viaduct, tunnel (where view is blocked), or level railway crossing.</li>
+              <li>Approaching a hill or curve where you cannot see clearly for at least <strong>150 metres</strong>.</li>
+              <li>Never pass on the <strong>right shoulder</strong> (passing on the right is only legal on multi-lane roads or when a vehicle ahead is turning left and there is paved roadway space).</li>
+            </ul>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Exact Parking Distances &amp; Hill Parking</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Do NOT Park Within:</div>
+                <ul class="space-y-1.5 text-sm text-slate-700 list-disc pl-4 marker:text-slate-400">
+                  <li><strong>3 metres</strong> of a fire hydrant</li>
+                  <li><strong>9 metres</strong> of an intersection (<strong>15 metres</strong> if controlled by traffic lights)</li>
+                  <li><strong>15 metres</strong> of a level railway crossing</li>
+                </ul>
+                <p class="mt-2.5 text-[11px] text-slate-500 font-medium">Curb Rule: Park within <strong>30 cm</strong> of the right curb (facing traffic) and always set the parking brake.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200/70">
+                <div class="text-xs font-semibold uppercase tracking-wider text-emerald-800 mb-2">Parking on Hills (Wheel Direction)</div>
+                <ul class="space-y-1.5 text-sm text-emerald-950 list-disc pl-4 marker:text-emerald-600">
+                  <li><strong>Uphill WITH curb:</strong> Turn wheels <strong>LEFT</strong> (away from curb) &amp; let back of front tire touch curb.</li>
+                  <li><strong>Uphill WITHOUT curb:</strong> Turn wheels <strong>RIGHT</strong> (toward road edge).</li>
+                  <li><strong>Downhill (with or without curb):</strong> Turn wheels <strong>RIGHT</strong> (toward curb/edge).</li>
+                </ul>
+                <p class="mt-2.5 text-[11px] text-emerald-800 font-medium">Memory Trick: "Up, Up, and Away!" — ONLY uphill with a curb turns Left (away).</p>
+              </div>
+            </div>
+          </section>
+        `
+      },
+      {
+        id: 'q6',
+        type: 'quiz',
+        moduleNum: 5,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 5: Turns, Signals & Parking',
+        subtitle: '3 high-yield questions on hand signals, wheels, and parking',
+        questions: [
+          {
+            q: 'When parking facing UPHILL on a street WITH a curb, which way should you turn your front wheels?',
+            options: [
+              'Sharp to the right (toward the curb)',
+              'Sharp to the left (away from the curb)',
+              'Straight ahead',
+              'Direction does not matter if the parking brake is set'
+            ],
+            correct: 1,
+            explanation: 'Uphill WITH a curb is the ONLY hill-parking scenario where you turn your wheels LEFT (away from the curb) so the curb catches your tire if the car rolls back.'
+          },
+          {
+            q: 'A driver extends their left arm out the window and bends it UPWARD at a 90-degree angle. What are they signalling?',
+            options: [
+              'Left turn',
+              'Right turn',
+              'Slowing down or stopping',
+              'Pulling out of a parking spot'
+            ],
+            correct: 1,
+            explanation: 'Left arm straight out = Left turn; bent UP = Right turn; bent DOWN = Slowing down or stopping.'
+          },
+          {
+            q: 'You must NOT park your vehicle within how many metres of a fire hydrant?',
+            options: ['1 metre', '3 metres', '9 metres', '15 metres'],
+            correct: 1,
+            explanation: 'Never park within 3 metres of a fire hydrant, 9 metres of an intersection (15 m if traffic lights), or 15 metres of a railway crossing.'
+          }
+        ]
+      },
+
+      /* ---------------- MODULE 7 ---------------- */
+      {
+        id: 'm7',
+        type: 'lesson',
+        moduleNum: 7,
+        icon: ICONS.highway,
+        title: 'Freeway & Highway Driving',
+        subtitle: 'Merging, lane discipline, HOV & HOT lanes, fatigue, and breakdowns',
+        readTime: '5 min read',
+        content: `
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Entering &amp; Exiting Freeways Safely</h3>
+            <div class="grid sm:grid-cols-2 gap-4 text-sm">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-2">Entering (Acceleration Lane)</div>
+                <ul class="space-y-1.5 text-xs text-slate-700 list-disc pl-4 marker:text-slate-400">
+                  <li>Signal early and use the acceleration lane to <strong>match the speed of freeway traffic</strong>.</li>
+                  <li>Check mirrors and blind spot, then merge smoothly into a gap (freeway drivers should move left or adjust speed to help you merge safely).</li>
+                  <li><strong>Do not stop</strong> at the end of the ramp unless traffic makes merging impossible.</li>
+                </ul>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-2">Exiting (Deceleration Lane)</div>
+                <ul class="space-y-1.5 text-xs text-slate-700 list-disc pl-4 marker:text-slate-400">
+                  <li>Signal well in advance and move into the exit lane at highway speed.</li>
+                  <li><strong>Slow down AFTER entering</strong> the deceleration lane—never brake in the main through-lane.</li>
+                  <li>Obey yellow advisory ramp speed signs. If you miss your exit, <strong>keep driving to the next exit</strong>. Backing up on a freeway is illegal (2 demerit points) and deadly.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Lane Discipline, HOV/HOT Lanes &amp; Highway Fatigue</h3>
+            <ul class="space-y-2.5 text-sm text-slate-700">
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Keep Right Except to Pass:</strong> Drive in the right-hand lane on multi-lane highways. Use the left lane for passing or faster-moving traffic.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>HOV (2+) &amp; HOT Lanes:</strong> HOV lanes are for 2+ occupants, buses, taxis, motorcycles, and Ontario green-plate EVs. <strong>HOT (High Occupancy Toll)</strong> lanes also allow solo drivers who hold a valid paid HOT permit.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Entering/Exiting HOV Lanes:</strong> You may ONLY cross into or out of an HOV lane at designated <strong>broken-line transfer zones</strong>. Crossing the solid double striped buffer zone carries <strong>3 demerit points</strong> and a fine.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Highway Hypnosis &amp; Fatigue:</strong> Keep your eyes moving (check mirrors regularly), keep the cabin cool, and take a break every <strong>2 hours</strong>. Never use paved emergency median crossovers—they are strictly for police/emergency/maintenance vehicles.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Vehicle Breakdown on Freeway:</strong> Pull completely onto the right shoulder, turn on hazard lights, and stay inside with seatbelts fastened if traffic is heavy—never walk along freeway lanes.</span></li>
+            </ul>
+          </section>
+        `
+      },
+      {
+        id: 'q7',
+        type: 'quiz',
+        moduleNum: 6,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 6: Freeways & HOV',
+        subtitle: '3 questions on merging, exiting, and HOV rules',
+        questions: [
+          {
+            q: 'When exiting a freeway, when should you begin to reduce your speed?',
+            options: [
+              '500 metres before reaching the exit lane',
+              'Just before signalling in the main right-hand lane',
+              'Only after you have entered the deceleration (exit) lane',
+              'Only after you reach the curved ramp'
+            ],
+            correct: 2,
+            explanation: 'Maintain highway speed until you have moved completely into the deceleration lane, then slow down smoothly to the posted ramp speed.'
+          },
+          {
+            q: 'When are you legally allowed to enter or exit a freeway HOV lane?',
+            options: [
+              'At any point where traffic is clear',
+              'Only at designated broken-line transfer zones',
+              'By crossing the double striped buffer zone while signalling',
+              'Only during rush hour'
+            ],
+            correct: 1,
+            explanation: 'You may only enter or leave an HOV lane at marked broken-line zones. Crossing the striped buffer zone is illegal and carries 3 demerit points.'
+          },
+          {
+            q: 'What should you do if you accidentally pass your intended freeway exit?',
+            options: [
+              'Stop on the shoulder and carefully reverse back to the exit',
+              'Make a U-turn across the paved emergency crossover',
+              'Continue safely to the next exit and turn around there',
+              'Slow down to 40 km/h and cut across the gore area'
+            ],
+            correct: 2,
+            explanation: 'Never back up on a freeway or use emergency crossovers. Always proceed to the next exit.'
+          }
+        ]
+      },
+
+      /* ---------------- MODULE 8 ---------------- */
+      {
+        id: 'm8',
+        type: 'lesson',
+        moduleNum: 8,
+        icon: ICONS.bus,
+        title: 'Sharing the Road: Buses, Emergency, Streetcars & More',
+        subtitle: 'School bus 20 m rule, Move Over, Yield-to-Bus, snowplows, streetcars, cyclists & trucks',
+        readTime: '6 min read',
+        content: `
+          <section class="bg-rose-50/70 rounded-2xl border border-rose-200/80 p-6 mb-5">
+            <h3 class="text-base font-semibold text-rose-950 mb-2.5">School Buses (Strictly Tested!)</h3>
+            <ul class="space-y-2 text-sm text-rose-950/90 list-disc pl-5 marker:text-rose-500">
+              <li>When a school bus stops with <strong>upper red lights flashing</strong> and stop arm extended, traffic in <strong>BOTH directions</strong> must stop.</li>
+              <li><strong>Approaching from behind:</strong> Stop at least <strong>20 metres</strong> back from the bus.</li>
+              <li><strong>Only Exception:</strong> On a road divided by a <strong>physical median</strong>, oncoming traffic travelling in the opposite direction does <em>not</em> have to stop.</li>
+              <li><strong>Penalties:</strong> First offence = <strong>$400–$2,000 fine + 6 demerit points</strong>. Vehicle owners can be charged even if they weren't driving!</li>
+            </ul>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Emergency Vehicles, "Move Over" Law &amp; Municipal Buses</h3>
+            <ul class="space-y-2.5 text-sm text-slate-700">
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Approaching Emergency Vehicle (siren/flashing lights):</strong> Immediately pull over to the <strong>right</strong> edge of the road and come to a <strong>complete stop</strong> until it passes.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Stopped Emergency Vehicle or Tow Truck ("Move Over" Law):</strong> When approaching a stopped police, fire, ambulance (flashing red/blue lights) OR a stopped <strong>tow truck with flashing amber lights</strong>, you MUST slow down, proceed with caution, and if on a multi-lane road, <strong>move over one lane</strong> if safe. (Penalty: <strong>3 demerit points</strong> + $400–$2,000).</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Fire Trucks:</strong> Never follow within <strong>150 metres</strong> of a fire vehicle responding to an alarm, and never drive over a fire hose.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Yield-to-Bus Law:</strong> When a municipal transit bus in a bus bay signals to re-enter your lane on a road with a speed limit of <strong>60 km/h or less</strong>, you MUST yield the right-of-way.</span></li>
+            </ul>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Streetcars, Cyclists, Motorcycles, Trucks &amp; Snowplows</h3>
+            <div class="grid sm:grid-cols-2 gap-3.5 text-xs sm:text-sm">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1.5">Streetcars</div>
+                <p class="text-slate-600 leading-relaxed">Pass on the <strong>right</strong> (except on one-way streets). When stopped for passengers, stop at least <strong>2 metres behind the rear doors</strong> until passengers reach the sidewalk—unless there is a safety island.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1.5">Cyclists &amp; Motorcycles</div>
+                <p class="text-slate-600 leading-relaxed">Leave at least <strong>1 metre</strong> clearance when passing cyclists. Check mirrors/blind spots before opening doors ("Dutch Reach"). Give motorcycles a full lane and extra following space.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1.5">Large Trucks ("No-Zones")</div>
+                <p class="text-slate-600 leading-relaxed">Avoid their large blind spots—if you can't see the driver's mirrors, they can't see you. Never squeeze on the right when a truck swings wide to make a right turn.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1.5">Snowplows &amp; Horse-Drawn Vehicles</div>
+                <p class="text-slate-600 leading-relaxed">Snowplows flash <strong>blue lights</strong>—stay well back and <strong>never pass between echelon plows</strong> or on the right of a plow. Slow down and avoid honking near horses/buggies.</p>
+              </div>
+            </div>
+          </section>
+        `
+      },
+      {
+        id: 'q8',
+        type: 'quiz',
+        moduleNum: 7,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 7: Sharing the Road',
+        subtitle: '3 questions on school buses, Move Over, and transit buses',
+        questions: [
+          {
+            q: 'You are driving behind a school bus that stops with its upper red lights flashing. How far back must you stop?',
+            options: ['At least 5 metres', 'At least 10 metres', 'At least 20 metres', 'At least 50 metres'],
+            correct: 2,
+            explanation: 'When approaching a stopped school bus from behind with flashing red lights, you must stop at least 20 metres away.'
+          },
+          {
+            q: 'Under Ontario’s "Move Over" law, which stopped roadside vehicles require you to slow down and change lanes (if safe on a multi-lane road)?',
+            options: [
+              'Police cars only',
+              'Police, fire, and ambulances only',
+              'Emergency vehicles with flashing red/blue lights AND tow trucks with flashing amber lights',
+              'Any vehicle with four-way hazard lights on'
+            ],
+            correct: 2,
+            explanation: 'Ontario’s Move Over law protects both emergency vehicles (flashing red/blue lights) and stopped tow trucks with flashing amber lights.'
+          },
+          {
+            q: 'A municipal transit bus in a bus bay turns on its left signal to re-enter your lane on a 50 km/h city street. What must you do?',
+            options: [
+              'Speed up to pass before it pulls out',
+              'Yield the right-of-way and let the bus safely re-enter the lane',
+              'Honk to warn the bus driver',
+              'Only yield if it is rush hour'
+            ],
+            correct: 1,
+            explanation: 'Under Ontario’s Yield-to-Bus law, drivers must yield to a municipal bus signalling to re-enter traffic from a bus bay on roads with speed limits of 60 km/h or less.'
+          }
+        ]
+      },
+
+      /* ---------------- MODULE 9 ---------------- */
+      {
+        id: 'm9',
+        type: 'lesson',
+        moduleNum: 9,
+        icon: ICONS.shield,
+        title: 'Impaired Driving, Distracted Driving & Seatbelts',
+        subtitle: 'Zero tolerance, alcohol/drug myths, handheld bans, airbags, and child seats',
+        readTime: '6 min read',
+        content: `
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Alcohol &amp; Drug Impairment Thresholds</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 text-slate-500">
+                    <th class="py-2 pr-3 font-semibold">Category / BAC</th>
+                    <th class="py-2 pr-3 font-semibold">Applies To</th>
+                    <th class="py-2 font-semibold">Immediate Roadside Penalty (1st Offence)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-slate-700">
+                  <tr>
+                    <td class="py-2.5 pr-3 font-semibold text-rose-700">Zero Tolerance (0.00% / 0 Drugs)</td>
+                    <td class="py-2.5 pr-3">All G1/G2/M1/M2 novice drivers, anyone <strong>age 21 &amp; under</strong>, commercial drivers</td>
+                    <td class="py-2.5"><strong>3-day</strong> immediate licence suspension + $250 penalty (+ 30-day novice suspension upon conviction)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-3 font-semibold text-amber-700">Warn Range (0.05% – 0.079%)</td>
+                    <td class="py-2.5 pr-3">Full Class G drivers aged 22+</td>
+                    <td class="py-2.5"><strong>3-day</strong> suspension (2nd: 7 days; 3rd: 30 days) + administrative penalty</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 pr-3 font-semibold text-rose-700">Criminal Limit (0.08%+ / Drug / Refusal)</td>
+                    <td class="py-2.5 pr-3">All drivers</td>
+                    <td class="py-2.5"><strong>90-day</strong> immediate suspension + <strong>7-day vehicle impoundment</strong> + Criminal Code charge (1-yr suspension, Back on Track program &amp; ignition interlock on 1st conviction)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-3 text-xs text-slate-500 leading-relaxed">
+              <strong>Key MTO Facts:</strong> Only <strong>TIME</strong> lowers your blood alcohol level—coffee, cold showers, or food do NOT sober you up. Prescription and over-the-counter drugs (like antihistamines) can also legally impair you. Police use breathalyzers, Standardized Field Sobriety Tests (SFST), Drug Recognition Experts (DRE), and oral fluid screening devices; refusing any test carries the exact same immediate penalty as 0.08%+.
+            </p>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Distracted Driving (Handheld Device Law)</h3>
+            <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+              It is illegal to hold, type, dial, or scroll on a phone or handheld device while driving—<strong>including while stopped at a red light or in traffic</strong>. You may only use a device when safely pulled off the roadway, or to call <strong>911</strong> in an emergency. Hands-free Bluetooth and mounted GPS displays are permitted.
+            </p>
+            <div class="grid sm:grid-cols-2 gap-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                <div class="font-semibold text-slate-900 mb-1">Full Class G Drivers (1st Conviction)</div>
+                <p class="text-slate-600">Fine up to <strong>$1,000</strong>, <strong>3 demerit points</strong>, and a <strong>3-day</strong> licence suspension.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-rose-50/70 border border-rose-200/70">
+                <div class="font-semibold text-rose-900 mb-1">Novice Drivers (G1 / G2)</div>
+                <p class="text-rose-800">Same fine, PLUS escalating suspensions: <strong>30 days</strong> (1st), <strong>90 days</strong> (2nd), <strong>licence cancellation</strong> (3rd)!</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-2xs text-sm">
+            <h3 class="font-semibold text-slate-900 mb-2">Seatbelts, Airbags &amp; Child Safety Seats</h3>
+            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+              <li>The <strong>driver is legally responsible</strong> for ensuring all passengers under <strong>16 years old</strong> are properly buckled (2 demerit points + fine per violation). Wear the lap belt low across the hips and shoulder strap across the chest—never under your arm.</li>
+              <li><strong>Airbag Safety:</strong> Sit at least <strong>25 cm (10 inches)</strong> from the steering wheel. <strong>Never</strong> place a rear-facing infant seat in front of an active passenger airbag.</li>
+              <li><strong>Child Seat Stages:</strong> Rear-facing (&lt;9 kg / 20 lbs) &rarr; Forward-facing with tether (9–18 kg / 20–40 lbs) &rarr; <strong>Booster seat</strong> until the child reaches ONE of: <strong>8 years old</strong>, <strong>36 kg (80 lbs)</strong>, OR <strong>145 cm (4'9")</strong> tall.</li>
+            </ul>
+          </section>
+        `
+      },
+      {
+        id: 'q9',
+        type: 'quiz',
+        moduleNum: 8,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 8: Impaired & Distracted',
+        subtitle: '3 questions on BAC, handheld bans, and seatbelts',
+        questions: [
+          {
+            q: 'Which drivers in Ontario are subject to the Zero Tolerance (0.00% BAC) alcohol rule?',
+            options: [
+              'Only G1 drivers',
+              'G1 and G2 drivers, all drivers aged 21 and under (even with a full G), and commercial drivers',
+              'All drivers aged 25 and under',
+              'Only drivers with previous convictions'
+            ],
+            correct: 1,
+            explanation: 'Zero BAC and zero drugs apply to all novice (G1/G2/M1/M2) drivers of any age, ALL drivers aged 21 and under regardless of licence class, and commercial drivers.'
+          },
+          {
+            q: 'Are you legally allowed to quickly check a text message on your handheld phone while fully stopped at a red traffic light?',
+            options: [
+              'Yes, as long as your foot is firmly on the brake',
+              'Yes, if you put the car in Park',
+              'No—using a handheld device is illegal even when stopped at a red light',
+              'Yes, for up to 5 seconds'
+            ],
+            correct: 2,
+            explanation: 'Ontario’s distracted driving law applies anytime you are on the road, including while stopped at red lights or stuck in traffic. Pull safely off the road first.'
+          },
+          {
+            q: 'What is the ONLY effective way to lower your Blood Alcohol Concentration (BAC) after drinking?',
+            options: [
+              'Drinking strong black coffee',
+              'Taking a cold shower',
+              'Eating a heavy meal',
+              'Allowing enough time to pass'
+            ],
+            correct: 3,
+            explanation: 'Only time allows your liver to metabolize alcohol. Coffee, showers, and food do not reduce BAC.'
+          }
+        ]
+      },
+
+      /* ---------------- MODULE 10 ---------------- */
+      {
+        id: 'm10',
+        type: 'lesson',
+        moduleNum: 10,
+        icon: ICONS.alert,
+        title: 'Demerit Points, Stunt Driving, Maintenance & Emergencies',
+        subtitle: 'Point thresholds, stunt driving, mechanical failures, and $5,000 collision reporting',
+        readTime: '6 min read',
+        content: `
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-2">The Ontario Demerit Point System</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-4">
+              You start at <strong>0 points</strong> and <em>gain</em> points upon conviction. Points remain on your record for <strong>2 years from the offence date</strong>. Offences in other Canadian provinces, New York, and Michigan also add points to your Ontario record!
+            </p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 text-slate-500">
+                    <th class="py-2 pr-3 font-semibold w-20">Points</th>
+                    <th class="py-2 font-semibold">Key Offences</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-slate-700">
+                  <tr>
+                    <td class="py-2 pr-3 font-bold text-rose-700">7 pts</td>
+                    <td class="py-2">Failing to remain at the scene of a collision; failing to stop for police.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-3 font-bold text-rose-600">6 pts</td>
+                    <td class="py-2">Careless driving; racing / stunt driving (40+ over on &lt;80 km/h, 50+ over on &ge;80 km/h, 150+ km/h, drifting, wheelies, cutting off); failing to stop for a school bus.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-3 font-bold text-amber-600">4 pts</td>
+                    <td class="py-2">Speeding 30–49 km/h over; following too closely (tailgating); failing to stop at a pedestrian crossover.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-3 font-bold text-slate-800">3 pts</td>
+                    <td class="py-2">Speeding 16–29 km/h over; distracted driving (handheld); failing to yield or obey stop sign/red light; wrong way on divided road; failing to Move Over; crossing HOV buffer.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-3 font-bold text-slate-500">2 pts</td>
+                    <td class="py-2">Improper left/right turns; seatbelt offences; backing on a highway; failing to lower high beams.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-3 mt-4 text-xs">
+              <div class="p-3.5 rounded-xl bg-rose-50/70 border border-rose-200/70">
+                <div class="font-semibold text-rose-900 mb-1.5">Novice Drivers (G1 / G2) Thresholds</div>
+                <ul class="space-y-1 text-rose-900/90 list-disc pl-4 marker:text-rose-500">
+                  <li><strong>2–5 pts:</strong> Warning letter</li>
+                  <li><strong>6–8 pts:</strong> Second warning letter</li>
+                  <li><strong>9+ pts:</strong> <strong>60-day suspension</strong> (reinstated at 4 pts)</li>
+                  <li><strong>Escalating Sanctions:</strong> Any single <strong>4+ pt</strong> conviction triggers 30d &rarr; 90d &rarr; cancellation!</li>
+                </ul>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="font-semibold text-slate-900 mb-1.5">Full Class G Driver Thresholds</div>
+                <ul class="space-y-1 text-slate-700 list-disc pl-4 marker:text-slate-400">
+                  <li><strong>6–8 pts:</strong> Warning letter</li>
+                  <li><strong>9–14 pts:</strong> Second warning letter / possible interview</li>
+                  <li><strong>15+ pts:</strong> <strong>30-day suspension</strong> (reinstated at 7 pts)</li>
+                  <li><strong>Stunt Driving Roadside:</strong> Immediate <strong>30-day suspension</strong> + <strong>14-day impoundment</strong>.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-white rounded-2xl border border-slate-200/80 p-6 mb-5 shadow-2xs">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">Handling Driving &amp; Mechanical Emergencies</h3>
+            <ul class="space-y-2 text-sm text-slate-700">
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Skidding:</strong> Ease off the gas, stay off the brakes, and <strong>look &amp; steer in the direction you want the vehicle to go</strong>.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Hydroplaning (riding on water):</strong> Ease off the accelerator, steer straight, and do NOT slam on the brakes.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Tire Blowout:</strong> Grip the steering wheel firmly, take your foot off the gas, <strong>do NOT brake suddenly</strong>, and steer straight until slowed.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Wheels Drop Off Pavement:</strong> Grip wheel, ease off gas, slow down smoothly, then steer gently back onto the road—never yank the wheel.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Brake Failure / Stuck Gas / Hood Flies Up:</strong> Brake failure: pump pedal, downshift, apply parking brake gently. Stuck gas: shift to <strong>Neutral</strong>, brake firmly, pull over. Hood flies up: look through the gap under the hood or side window, slow down, pull off safely.</span></li>
+              <li class="flex gap-2.5"><span class="text-emerald-600 font-bold">&bull;</span><span><strong>Vehicle Maintenance:</strong> Minimum legal tire tread depth is <strong>1.5 mm</strong>. Never run an engine in a closed garage (odourless <strong>carbon monoxide</strong> danger).</span></li>
+            </ul>
+          </section>
+
+          <section class="bg-emerald-50/70 rounded-2xl border border-emerald-200/80 p-5 text-sm text-emerald-950">
+            <div class="font-semibold mb-1">Collision Duties &amp; Reporting Rule (Updated Ontario Law)</div>
+            <p class="text-xs sm:text-sm text-emerald-900/90 leading-relaxed">
+              You must remain at the scene, exchange <strong>name, address, phone, driver's licence #, plate #, and insurance details</strong>, and <strong>report to police immediately</strong> if anyone is injured OR if combined damage exceeds <strong>$5,000</strong> (or if highway/municipal property is damaged). Do not move injured persons unless there is immediate danger (like fire). For minor drivable collisions with no injuries: <em>"Steer it, Clear it"</em> off the roadway.
+            </p>
+          </section>
+        `
+      },
+      {
+        id: 'q10',
+        type: 'quiz',
+        moduleNum: 9,
+        icon: ICONS.quiz,
+        title: 'Knowledge Check 9: Demerits & Emergencies',
+        subtitle: '3 final module questions before your Memory Poem & Readiness Exam',
+        questions: [
+          {
+            q: 'At how many demerit points will a novice (G1 or G2) driver’s licence be suspended for 60 days?',
+            options: ['6 points', '9 points', '12 points', '15 points'],
+            correct: 1,
+            explanation: 'Novice drivers face a 60-day licence suspension at 9 or more demerit points (whereas full Class G drivers face a 30-day suspension at 15 or more points).'
+          },
+          {
+            q: 'If your vehicle begins to skid on an icy road, what should you do?',
+            options: [
+              'Slam on the brakes and steer opposite to the skid',
+              'Ease off the gas and steer in the direction you want the vehicle to go',
+              'Accelerate gently to regain traction',
+              'Pull the emergency parking brake immediately'
+            ],
+            correct: 1,
+            explanation: 'When skidding, stay calm, ease off the accelerator, avoid slamming the brakes, and look and steer smoothly in the direction you want to go.'
+          },
+          {
+            q: 'Under current Ontario law, you must report a collision to police if anyone is injured OR if combined vehicle/property damage exceeds:',
+            options: ['$1,000', '$2,000', '$5,000', '$10,000'],
+            correct: 2,
+            explanation: 'Ontario raised the mandatory police collision reporting threshold to $5,000 combined damage. Any injury must always be reported regardless of damage cost.'
+          }
+        ]
+      },
+
+      /* ---------------- PRE-EXAM MEMORY POEM ---------------- */
+      {
+        id: 'memory-poem',
+        type: 'poem',
+        moduleNum: 11,
+        icon: ICONS.poem,
+        title: 'The Road to 80%: A Memory Poem',
+        subtitle: 'Read this rhythmic recap right before your exam to lock every MTO rule into memory',
+        stanzas: [
+          {
+            heading: 'I. The G1 Promise',
+            lines: [
+              'At sixteen years your journey starts, with eighty to succeed,',
+              'Zero drops of alcohol, no cannabis or speed.',
+              'A four-year Class G mentor sits beside you in the front,',
+              'Under point-oh-five their BAC, no midnight highway stunt.',
+              'From twelve to five you stay off-road, six days to change your street,',
+              'Wait twelve months—or just eight with BDE—and buckle every seat.'
+            ]
+          },
+          {
+            heading: 'II. Shapes, Colours & Painted Lines',
+            lines: [
+              'Red octagon commands a STOP; red triangle says YIELD,',
+              'Green circle tells you what you MUST; red slash is strictly sealed.',
+              'Yellow diamonds warn of curves, while orange means construction—',
+              'Slow down where orange workers stand, or double-fine deduction!',
+              'Yellow lines split opposite lanes—pass only when yours breaks;',
+              'White lines keep same-way traffic smooth; pentagons guard school gates.'
+            ]
+          },
+          {
+            heading: 'III. Lights, Signals & Right-of-Way',
+            lines: [
+              'Flashing red’s a stop sign; when power’s out, all stop.',
+              'Two cars arrive together? The RIGHT-hand goes on top.',
+              'Left arm straight out to turn left; bent UP to signal right;',
+              'Bent DOWN means slow or stopping—keep hand signals clear and bright.',
+              'At crossovers and school guards, wait till feet touch curb again;',
+              'Counter-clockwise roundabouts—signal right as you exit the lane.'
+            ]
+          },
+          {
+            heading: 'IV. Distances, Beams & Parking Hills',
+            lines: [
+              'Fifty in the city streets, eighty on rural lanes,',
+              'Two seconds back in sunny skies, three-four in snow and rains.',
+              'Dim high beams at one-fifty met, at sixty when behind;',
+              'Low beams in fog, lights thirty past and thirty ‘fore dusk’s line.',
+              'Three from a hydrant, nine from corners, fifteen from a train;',
+              'Hill wheels turn RIGHT—except UPHILL WITH CURB: “Up, up, away!” (Left lane).'
+            ]
+          },
+          {
+            heading: 'V. Sharing Roads, Points & Emergencies',
+            lines: [
+              'Twenty metres back for school bus reds—unless a median stands;',
+              'Two behind a streetcar’s doors, one metre for bike bands.',
+              'Move Over for red, blue, or amber tow trucks on the side;',
+              'Yield to city buses merging back where sixties are the guide.',
+              'At nine points novice licences pause, at fifteen full G’s fall;',
+              'Five thousand bucks or injury? Make that police crash call.',
+              'If tires blow or ice makes skid, stay calm and off the brake—',
+              'Look and steer where you must go, and eighty-plus you’ll make!'
+            ]
+          }
+        ]
+      },
+
+      /* ---------------- FINAL READINESS EXAM ---------------- */
+      {
+        id: 'final-exam',
+        type: 'exam',
+        moduleNum: 12,
+        icon: ICONS.trophy,
+        title: 'Final G1 Readiness Exam (80%+ Target)',
+        subtitle: '16 mixed exam-style questions: 8 Road Signs + 8 Rules of the Road',
+        questions: [
+          // 8 Road Signs
+          {
+            section: 'signs',
+            q: 'What does this sign mean?',
+            visual: SIGNS.doNotEnter,
+            options: ['No parking anytime', 'Do not enter this road or ramp', 'Road closed ahead', 'Stop and yield to oncoming traffic'],
+            correct: 1,
+            explanation: 'The red circle with a horizontal white bar means Do Not Enter.'
+          },
+          {
+            section: 'signs',
+            q: 'What hazard does this warning sign indicate?',
+            visual: SIGNS.dividedEnds,
+            options: ['Divided highway begins ahead', 'Divided highway ends ahead—keep right', 'Narrow bridge ahead', 'Merge left'],
+            correct: 1,
+            explanation: 'The median island at the top disappears toward the bottom, warning that the divided highway ends and two-way traffic resumes.'
+          },
+          {
+            section: 'signs',
+            q: 'Identify this sign:',
+            visual: SIGNS.pedestrianCrossover,
+            options: ['School zone ahead', 'Pedestrian crossover—stop and wait until pedestrians completely cross', 'Sidewalk ends', 'Playground area'],
+            correct: 1,
+            explanation: 'This regulatory sign marks a Pedestrian Crossover (PXO) where you must stop and wait until pedestrians have completely crossed the entire roadway.'
+          },
+          {
+            section: 'signs',
+            q: 'What does this sign tell you?',
+            visual: SIGNS.noLeftTurn,
+            options: ['Left turn lane ahead', 'No U-turn allowed', 'No left turn allowed', 'One-way street to the left'],
+            correct: 2,
+            explanation: 'A red circle with a diagonal slash over a left-turn arrow prohibits making a left turn.'
+          },
+          {
+            section: 'signs',
+            q: 'What does this orange diamond sign warn you about?',
+            visual: SIGNS.construction,
+            options: ['Pedestrian crossing', 'Construction / road work ahead (fines doubled if workers present)', 'School crossing guard', 'Uneven pavement'],
+            correct: 1,
+            explanation: 'Orange diamond signs warn of temporary construction zones. Speeding fines are doubled when workers are present.'
+          },
+          {
+            section: 'signs',
+            q: 'When you see this sign, what action is required?',
+            visual: SIGNS.yield,
+            options: ['Always come to a full stop', 'Slow down and give right-of-way to traffic and pedestrians', 'Merge immediately at high speed', 'Do not pass'],
+            correct: 1,
+            explanation: 'An inverted red-and-white triangle is exclusively a Yield sign: slow down, stop if necessary, and yield the right-of-way.'
+          },
+          {
+            section: 'signs',
+            q: 'Which vehicles may use a lane marked with this sign?',
+            visual: SIGNS.hov,
+            options: ['Single-occupant cars during off-peak hours', 'Vehicles with 2 or more occupants, buses, or green-plate EVs', 'Heavy commercial trucks only', 'Learner G1 drivers only'],
+            correct: 1,
+            explanation: 'HOV 2+ lanes are reserved for vehicles with at least two people, buses, motorcycles, taxis, and Ontario green-plate electric vehicles.'
+          },
+          {
+            section: 'signs',
+            q: 'When you see this sign at a level railway crossing and a train is approaching, how far back from the nearest rail must you stop?',
+            visual: SIGNS.railroad,
+            options: ['At least 2 metres', 'At least 5 metres', 'At least 15 metres', 'At least 20 metres'],
+            correct: 1,
+            explanation: 'When a train is approaching, stop at least 5 metres from the nearest rail. (15 metres is the no-parking distance from a railway crossing.)'
+          },
+          // 8 Rules of the Road
+          {
+            section: 'rules',
+            q: 'How long do demerit points remain on your Ontario driving record?',
+            options: ['1 year from the conviction date', '2 years from the offence date', '3 years from the conviction date', '5 years from the offence date'],
+            correct: 1,
+            explanation: 'Demerit points stay on your record for 2 years from the date of the offence.'
+          },
+          {
+            section: 'rules',
+            q: 'You are driving at 95 km/h on a road with a posted speed limit of 50 km/h. What major charge applies?',
+            options: ['Standard minor speeding ticket', 'Stunt driving (40+ km/h over on a road with a limit under 80 km/h)', 'Careless driving only', 'No demerit points'],
+            correct: 1,
+            explanation: 'Driving 40 km/h or more over the limit on roads with a limit under 80 km/h (or 50+ over on 80+ km/h roads, or 150+ km/h anywhere) is Stunt Driving: immediate 30-day suspension, 14-day impoundment, and 6 demerit points.'
+          },
+          {
+            section: 'rules',
+            q: 'When following another vehicle at night, within what distance must you dim your high-beam headlights?',
+            options: ['30 metres', '60 metres', '120 metres', '150 metres'],
+            correct: 1,
+            explanation: 'Dim your high beams within 60 metres when following another vehicle, and within 150 metres when meeting an oncoming vehicle.'
+          },
+          {
+            section: 'rules',
+            q: 'On a divided highway with a physical median, a school bus stops on the OPPOSITE side with its red lights flashing. What must you do?',
+            options: [
+              'Stop at least 20 metres before the bus',
+              'You do not have to stop because of the physical median',
+              'Slow down to 20 km/h and honk',
+              'Stop until the bus moves'
+            ],
+            correct: 1,
+            explanation: 'On a road divided by a physical median, traffic travelling in the opposite direction does not have to stop for a school bus.'
+          },
+          {
+            section: 'rules',
+            q: 'What is the minimum safe clearance you must leave when passing a cyclist in Ontario?',
+            options: ['0.5 metres', '1 metre', '2 metres', '3 metres'],
+            correct: 1,
+            explanation: 'Ontario law requires drivers to maintain a minimum 1-metre clearance when passing a cyclist.'
+          },
+          {
+            section: 'rules',
+            q: 'What does a flashing green traffic light (or left-pointing green arrow) mean in Ontario?',
+            options: [
+              'Traffic light is about to turn red',
+              'Advance green: you may turn left, go straight, or turn right while oncoming traffic is held by a red light',
+              'Pedestrians have the right-of-way',
+              'Treat as a yield sign'
+            ],
+            correct: 1,
+            explanation: 'A flashing green light is an advance green giving you protected priority to turn left (or go straight/right) before oncoming traffic gets a green light.'
+          },
+          {
+            section: 'rules',
+            q: 'If a tire suddenly blows out while driving at highway speed, what is the safest immediate response?',
+            options: [
+              'Brake hard immediately to stop as fast as possible',
+              'Grip the wheel firmly, ease off the gas, avoid sudden braking, and steer straight until slowed',
+              'Swivel onto the shoulder immediately at full speed',
+              'Shift directly into Park'
+            ],
+            correct: 1,
+            explanation: 'Hold the steering wheel firmly, take your foot off the accelerator, do NOT slam the brakes, and pull off the road smoothly once slowed.'
+          },
+          {
+            section: 'rules',
+            q: 'As a G1 driver, during which hours are you prohibited from driving?',
+            options: [
+              '10:00 p.m. to 6:00 a.m.',
+              '11:00 p.m. to 5:00 a.m.',
+              'Midnight (12:00 a.m.) to 5:00 a.m.',
+              '1:00 a.m. to 4:00 a.m.'
+            ],
+            correct: 2,
+            explanation: 'G1 drivers are prohibited from driving between midnight (12:00 a.m.) and 5:00 a.m.'
+          }
+        ]
+      }
+    ];
+
+    /* =========================================================================
+     * 4. APPLICATION STATE & LOCALSTORAGE PERSISTENCE
+     * ========================================================================= */
+    const STORAGE_KEY = 'ontario_g1_mastery_v2';
+
+    const DEFAULT_STATE = {
+      currentIndex: 0,
+      completedSteps: {},
+      quizAnswers: {},   // { stepId: { questionIndex: selectedOptionIndex } }
+      examAnswers: {},   // { questionIndex: selectedOptionIndex }
+      examSubmitted: false
+    };
+
+    let state = loadState();
+
+    /** Load persisted progress safely from localStorage */
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return structuredClone(DEFAULT_STATE);
+        const parsed = JSON.parse(raw);
+        return {
+          currentIndex: Math.min(Math.max(0, Number(parsed.currentIndex) || 0), CURRICULUM.length - 1),
+          completedSteps: parsed.completedSteps || {},
+          quizAnswers: parsed.quizAnswers || {},
+          examAnswers: parsed.examAnswers || {},
+          examSubmitted: Boolean(parsed.examSubmitted)
         };
+      } catch (err) {
+        console.warn('Could not load saved state, using defaults:', err);
+        return structuredClone(DEFAULT_STATE);
+      }
+    }
 
-        // Initialize and Load Data
-        async function init() {
-            lucide.createIcons();
-            try {
-                // Auth first
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
+    /** Save current state safely to localStorage */
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (err) {
+        console.warn('Could not save state:', err);
+      }
+    }
 
-                // Fetch all matches
-                const matchesRef = collection(db, 'artifacts', activeAppId, 'public', 'data', 'matches');
-                const snapshot = await getDocs(matchesRef);
-                
-                // Filter for completed matches and sort by date descending
-                const matches = snapshot.docs
-                    .map(doc => ({ id: doc.id, ...doc.data() }))
-                    .filter(m => m.status === 'completed' && m.winner)
-                    .sort((a, b) => new Date(b.date) - new Date(a.date));
+    /* =========================================================================
+     * 5. SIDEBAR & PROGRESS RENDERING
+     * ========================================================================= */
+    function renderSidebar() {
+      const nav = document.getElementById('sidebar-nav');
+      nav.innerHTML = '';
 
-                const selector = document.getElementById('match-selector');
-                selector.innerHTML = '<option value="">Select a match to patch...</option>';
+      CURRICULUM.forEach((step, idx) => {
+        const isActive = idx === state.currentIndex;
+        const isDone = Boolean(state.completedSteps[step.id]);
+        const isQuiz = step.type === 'quiz';
+        const isPoem = step.type === 'poem';
+        const isExam = step.type === 'exam';
 
-                matches.forEach(m => {
-                    const isTie = m.winner === 'Tie';
-                    const label = isTie 
-                        ? `${m.date} | ${m.player1} Tied ${m.player2}` 
-                        : `${m.date} | ${m.winner} Defeated ${m.loser}`;
-                    
-                    const hasPhotoIndicator = m.photoUrl ? ' (Has Photo)' : ' (No Photo)';
-                    selector.add(new Option(label + hasPhotoIndicator, m.id));
-                });
-
-                document.getElementById('loading-state').classList.add('hidden');
-                document.getElementById('patch-form').classList.remove('hidden');
-
-            } catch (error) {
-                console.error("Initialization error:", error);
-                document.getElementById('loading-state').innerHTML = `<div class="text-rose-500">Failed to connect to database.</div>`;
-            }
+        // Compute quiz score pill if completed
+        let badge = '';
+        if (isQuiz && isDone) {
+          const ans = state.quizAnswers[step.id] || {};
+          const score = step.questions.reduce((acc, q, qi) => acc + (ans[qi] === q.correct ? 1 : 0), 0);
+          const passColor = score >= 2 ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700';
+          badge = `<span class="text-[10px] font-semibold px-1.5 py-0.5 rounded-md ${passColor}">${score}/${step.questions.length}</span>`;
+        } else if (isDone) {
+          badge = `<svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>`;
         }
 
-        // Handle Submission
-        document.getElementById('patch-form').onsubmit = async function(e) {
-            e.preventDefault();
-            const matchId = document.getElementById('match-selector').value;
-            const photoInput = document.getElementById('new-photo');
-            const btn = document.getElementById('submit-btn');
+        const indentClass = isQuiz ? 'ml-4 pl-3 border-l border-slate-200' : '';
+        const activeClass = isActive
+          ? 'bg-emerald-50/90 text-emerald-900 font-medium ring-1 ring-emerald-200/80'
+          : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900';
 
-            if (!matchId) return showToast("Please select a match.", true);
-            if (photoInput.files.length === 0) return showToast("Please select an image.", true);
+        const labelText = isQuiz
+          ? `Check ${step.moduleNum} (3 Qs)`
+          : isPoem
+            ? 'Memory Poem Recap'
+            : isExam
+              ? 'Final Readiness Exam'
+              : `${step.moduleNum}. ${step.title}`;
 
-            btn.disabled = true;
-            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Processing...`;
-            lucide.createIcons();
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => navigateTo(idx);
+        btn.className = `w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-left text-xs transition ${indentClass} ${activeClass}`;
+        btn.innerHTML = `
+          <span class="flex items-center gap-2.5 min-w-0">
+            <span class="${isActive ? 'text-emerald-600' : 'text-slate-400'} shrink-0">${step.icon}</span>
+            <span class="truncate">${labelText}</span>
+          </span>
+          ${badge}
+        `;
+        nav.appendChild(btn);
+      });
 
-            try {
-                // 1. Compress Image
-                const file = photoInput.files[0];
-                const compressedBlob = await compressImage(file, 1200, 1200, 0.7);
-                
-                // 2. Upload to Storage
-                btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Uploading...`;
-                const safeFileName = file.name.replace(/[^a-zA-Z0-9]/g, '_') + '.jpg';
-                const storageRef = ref(storage, `match_photos/${activeAppId}/${matchId}_PATCH_${Date.now()}_${safeFileName}`);
-                await uploadBytes(storageRef, compressedBlob);
-                const photoUrl = await getDownloadURL(storageRef);
+      // Update top progress bar
+      const completedCount = Object.keys(state.completedSteps).length;
+      const pct = Math.round((completedCount / CURRICULUM.length) * 100);
+      document.getElementById('progress-percent').textContent = `${pct}%`;
+      document.getElementById('progress-bar').style.width = `${pct}%`;
+      document.getElementById('progress-subtext').textContent = `${completedCount} of ${CURRICULUM.length} steps completed`;
+    }
 
-                // 3. Update Firestore Document
-                btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Patching DB...`;
-                await updateDoc(doc(db, 'artifacts', activeAppId, 'public', 'data', 'matches', matchId), {
-                    photoUrl: photoUrl
-                });
+    /* =========================================================================
+     * 6. MAIN VIEW ROUTER & RENDERERS
+     * ========================================================================= */
+    function renderCurrentStep() {
+      const step = CURRICULUM[state.currentIndex];
+      const stage = document.getElementById('content-stage');
 
-                document.getElementById('patch-form').classList.add('hidden');
-                document.getElementById('success-state').classList.remove('hidden');
-                lucide.createIcons();
+      // Update mobile header & desktop breadcrumb
+      document.getElementById('mobile-step-label').textContent =
+        step.type === 'lesson'
+          ? `Module ${step.moduleNum} of 10`
+          : step.type === 'quiz'
+            ? `Knowledge Check ${step.moduleNum}`
+            : step.type === 'poem'
+              ? 'Pre-Exam Memory Poem'
+              : 'Final Readiness Exam';
 
-            } catch (error) {
-                console.error("Patch error:", error);
-                showToast("Failed to patch match. See console.", true);
-                btn.disabled = false;
-                btn.innerHTML = `<i data-lucide="upload-cloud" class="w-5 h-5"></i> Patch Photo`;
-                lucide.createIcons();
+      document.getElementById('breadcrumb-bar').innerHTML = `
+        <span class="text-slate-400">MTO Handbook</span>
+        <span class="text-slate-300">/</span>
+        <span class="font-medium text-slate-700">${step.title}</span>
+      `;
+
+      // Update bottom navigation buttons
+      document.getElementById('prev-btn').disabled = state.currentIndex === 0;
+      const nextBtn = document.getElementById('next-btn');
+      const nextLabel = document.getElementById('next-btn-label');
+      const hintEl = document.getElementById('bottom-status-hint');
+
+      if (state.currentIndex === CURRICULUM.length - 1) {
+        nextBtn.disabled = true;
+        nextLabel.textContent = 'Finished';
+      } else {
+        nextBtn.disabled = false;
+        const nextStep = CURRICULUM[state.currentIndex + 1];
+        nextLabel.textContent = nextStep.type === 'quiz'
+          ? 'Take Knowledge Check'
+          : nextStep.type === 'poem'
+            ? 'Read Memory Poem'
+            : nextStep.type === 'exam'
+              ? 'Start Final Exam'
+              : `Next: Module ${nextStep.moduleNum}`;
+      }
+
+      if (step.type === 'lesson') {
+        hintEl.textContent = `Module ${step.moduleNum} • ${step.readTime}`;
+        renderLesson(step, stage);
+      } else if (step.type === 'quiz') {
+        const ans = state.quizAnswers[step.id] || {};
+        const answeredCount = Object.keys(ans).length;
+        hintEl.textContent = answeredCount === step.questions.length
+          ? 'Knowledge Check complete! Continue to the next module.'
+          : `Answered ${answeredCount} of ${step.questions.length} questions`;
+        renderKnowledgeCheck(step, stage);
+      } else if (step.type === 'poem') {
+        hintEl.textContent = 'Read aloud once to lock in every rule before the exam';
+        renderPoem(step, stage);
+      } else {
+        hintEl.textContent = 'Score 80%+ on both Signs & Rules to pass';
+        renderFinalExam(step, stage);
+      }
+
+      renderSidebar();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /** Render a standard MTO Handbook Lesson Module */
+    function renderLesson(step, container) {
+      // Automatically mark lesson as read/completed upon viewing
+      if (!state.completedSteps[step.id]) {
+        state.completedSteps[step.id] = true;
+        saveState();
+      }
+
+      container.innerHTML = `
+        <article class="fade-enter">
+          <div class="mb-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-700 text-xs font-medium mb-3">
+              ${step.icon}
+              <span>Module ${step.moduleNum} of 10</span>
+              <span class="text-emerald-300">&bull;</span>
+              <span>${step.readTime}</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">${step.title}</h2>
+            <p class="mt-1.5 text-sm sm:text-base text-slate-500">${step.subtitle}</p>
+          </div>
+          ${step.content}
+        </article>
+      `;
+    }
+
+    /** Render the Pre-Exam Mnemonic Memory Poem */
+    function renderPoem(step, container) {
+      if (!state.completedSteps[step.id]) {
+        state.completedSteps[step.id] = true;
+        saveState();
+      }
+
+      const stanzasHtml = step.stanzas.map((stanza) => `
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-7 shadow-2xs">
+          <div class="text-xs font-semibold uppercase tracking-wider text-emerald-700 mb-3">${stanza.heading}</div>
+          <div class="space-y-1.5 text-sm sm:text-base text-slate-700 leading-relaxed font-normal italic">
+            ${stanza.lines.map(line => `<p>${line}</p>`).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      container.innerHTML = `
+        <article class="fade-enter space-y-5">
+          <div class="mb-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/70 text-amber-800 text-xs font-medium mb-3">
+              ${ICONS.poem}
+              <span>Pre-Exam Mnemonic Review</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">${step.title}</h2>
+            <p class="mt-1.5 text-sm sm:text-base text-slate-500">${step.subtitle}</p>
+          </div>
+          ${stanzasHtml}
+          <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div class="text-sm font-semibold text-emerald-950">Ready for the Final Readiness Exam?</div>
+              <p class="text-xs text-emerald-800 mt-0.5">Aim for at least 80% on both Road Signs and Rules of the Road.</p>
+            </div>
+            <button onclick="goNext()" class="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition shrink-0">
+              Start Final Exam &rarr;
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    /** Render a 3-Question Interleaved Knowledge Check */
+    function renderKnowledgeCheck(step, container) {
+      const savedAnswers = state.quizAnswers[step.id] || {};
+      const answeredCount = Object.keys(savedAnswers).length;
+      const allAnswered = answeredCount === step.questions.length;
+      const correctCount = step.questions.reduce(
+        (acc, q, idx) => acc + (savedAnswers[idx] === q.correct ? 1 : 0),
+        0
+      );
+
+      const questionsHtml = step.questions.map((q, qi) => {
+        const chosen = savedAnswers[qi];
+        const isAnswered = chosen !== undefined;
+
+        const optionsHtml = q.options.map((opt, oi) => {
+          let btnClasses = 'bg-slate-50/70 border-slate-200/80 text-slate-700 hover:bg-slate-100 hover:border-slate-300';
+          let iconHtml = `<span class="w-5 h-5 rounded-full border border-slate-300 text-[11px] font-semibold flex items-center justify-center shrink-0 text-slate-500">${String.fromCharCode(65 + oi)}</span>`;
+
+          if (isAnswered) {
+            if (oi === q.correct) {
+              btnClasses = 'bg-emerald-50 border-emerald-300 text-emerald-950 font-medium';
+              iconHtml = `<span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>`;
+            } else if (oi === chosen) {
+              btnClasses = 'bg-rose-50 border-rose-300 text-rose-950';
+              iconHtml = `<span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center shrink-0"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>`;
+            } else {
+              btnClasses = 'bg-slate-50/40 border-slate-200/50 text-slate-400';
             }
-        };
+          }
 
-        // Boot
-        init();
-    </script>
+          return `
+            <button
+              type="button"
+              ${isAnswered ? 'disabled' : `onclick="answerQuiz('${step.id}', ${qi}, ${oi})"`}
+              class="w-full flex items-start gap-3 p-3.5 rounded-xl border text-left text-xs sm:text-sm transition ${btnClasses} ${isAnswered ? 'cursor-default' : 'cursor-pointer'}"
+            >
+              ${iconHtml}
+              <span class="leading-snug">${opt}</span>
+            </button>
+          `;
+        }).join('');
+
+        const feedbackHtml = isAnswered ? `
+          <div class="mt-3.5 p-3.5 rounded-xl text-xs leading-relaxed ${chosen === q.correct ? 'bg-emerald-50/80 border border-emerald-200 text-emerald-900' : 'bg-amber-50/80 border border-amber-200 text-amber-950'}">
+            <strong>${chosen === q.correct ? 'Correct!' : 'MTO Explanation:'}</strong> ${q.explanation}
+          </div>
+        ` : '';
+
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-2xs">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Question ${qi + 1} of ${step.questions.length}</div>
+                <h3 class="text-sm sm:text-base font-semibold text-slate-900 leading-snug">${q.q}</h3>
+              </div>
+              ${q.visual ? `<div class="shrink-0 p-2 rounded-xl bg-slate-50 border border-slate-200/70">${q.visual}</div>` : ''}
+            </div>
+            <div class="space-y-2.5">${optionsHtml}</div>
+            ${feedbackHtml}
+          </div>
+        `;
+      }).join('');
+
+      const summaryHtml = allAnswered ? `
+        <div class="p-5 rounded-2xl border ${correctCount >= 2 ? 'bg-emerald-50/80 border-emerald-200' : 'bg-amber-50/80 border-amber-200'} flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="text-sm font-bold ${correctCount >= 2 ? 'text-emerald-950' : 'text-amber-950'}">
+              Score: ${correctCount} / ${step.questions.length} (${Math.round((correctCount / step.questions.length) * 100)}%)
+            </div>
+            <p class="text-xs ${correctCount >= 2 ? 'text-emerald-800' : 'text-amber-900'} mt-0.5">
+              ${correctCount === step.questions.length ? 'Perfect! You have locked in this section.' : correctCount >= 2 ? 'Solid grasp! Review any missed explanation before continuing.' : 'Take a quick look back at the explanations or retry this check.'}
+            </p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="retryQuiz('${step.id}')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition">
+              Retry Check
+            </button>
+            <button onclick="goNext()" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition">
+              Continue &rarr;
+            </button>
+          </div>
+        </div>
+      ` : '';
+
+      container.innerHTML = `
+        <article class="fade-enter space-y-5">
+          <div class="mb-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200/70 text-sky-700 text-xs font-medium mb-3">
+              ${ICONS.quiz}
+              <span>Quick Knowledge Check</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">${step.title}</h2>
+            <p class="mt-1.5 text-sm sm:text-base text-slate-500">${step.subtitle}</p>
+          </div>
+          ${questionsHtml}
+          ${summaryHtml}
+        </article>
+      `;
+    }
+
+    /** Record answer for a Knowledge Check question */
+    function answerQuiz(stepId, questionIdx, optionIdx) {
+      if (!state.quizAnswers[stepId]) {
+        state.quizAnswers[stepId] = {};
+      }
+      state.quizAnswers[stepId][questionIdx] = optionIdx;
+
+      const step = CURRICULUM.find(s => s.id === stepId);
+      if (step && Object.keys(state.quizAnswers[stepId]).length === step.questions.length) {
+        state.completedSteps[stepId] = true;
+      }
+
+      saveState();
+      renderCurrentStep();
+    }
+
+    /** Clear a specific Knowledge Check to practice again */
+    function retryQuiz(stepId) {
+      delete state.quizAnswers[stepId];
+      delete state.completedSteps[stepId];
+      saveState();
+      renderCurrentStep();
+    }
+
+    /** Render the 16-Question Final Readiness Exam (8 Signs + 8 Rules, 80% target per section) */
+    function renderFinalExam(step, container) {
+      const answeredCount = Object.keys(state.examAnswers).length;
+      const total = step.questions.length;
+
+      // Compute section results if submitted
+      let resultsBanner = '';
+      if (state.examSubmitted) {
+        let signsCorrect = 0;
+        let signsTotal = 0;
+        let rulesCorrect = 0;
+        let rulesTotal = 0;
+
+        step.questions.forEach((q, idx) => {
+          const isRight = state.examAnswers[idx] === q.correct;
+          if (q.section === 'signs') {
+            signsTotal++;
+            if (isRight) signsCorrect++;
+          } else {
+            rulesTotal++;
+            if (isRight) rulesCorrect++;
+          }
+        });
+
+        const signsPct = Math.round((signsCorrect / signsTotal) * 100);
+        const rulesPct = Math.round((rulesCorrect / rulesTotal) * 100);
+        const overallPct = Math.round(((signsCorrect + rulesCorrect) / total) * 100);
+        const passedBoth = signsPct >= 80 && rulesPct >= 80;
+
+        resultsBanner = `
+          <div class="p-6 rounded-2xl border ${passedBoth ? 'bg-emerald-50 border-emerald-200' : 'bg-amber-50 border-amber-200'} mb-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+              <div>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${passedBoth ? 'bg-emerald-600 text-white' : 'bg-amber-600 text-white'} mb-2">
+                  ${passedBoth ? 'EXAM READY (PASSED 80%+)' : 'KEEP PRACTISING (NEED 80% IN BOTH SECTIONS)'}
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">Overall Score: ${signsCorrect + rulesCorrect} / ${total} (${overallPct}%)</h3>
+              </div>
+              <button onclick="retakeExam()" class="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shrink-0">
+                Retake Final Exam
+              </button>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+              <div class="p-3.5 rounded-xl bg-white/90 border border-slate-200/70 flex items-center justify-between">
+                <span class="font-medium text-slate-700">Road Signs Section</span>
+                <span class="font-bold ${signsPct >= 80 ? 'text-emerald-600' : 'text-rose-600'}">${signsCorrect}/${signsTotal} (${signsPct}%)</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-white/90 border border-slate-200/70 flex items-center justify-between">
+                <span class="font-medium text-slate-700">Rules of the Road Section</span>
+                <span class="font-bold ${rulesPct >= 80 ? 'text-emerald-600' : 'text-rose-600'}">${rulesCorrect}/${rulesTotal} (${rulesPct}%)</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      const questionsHtml = step.questions.map((q, qi) => {
+        const chosen = state.examAnswers[qi];
+        const sectionTag = q.section === 'signs'
+          ? '<span class="px-2 py-0.5 rounded-md bg-sky-50 text-sky-700 text-[10px] font-semibold">Road Signs</span>'
+          : '<span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[10px] font-semibold">Rules of the Road</span>';
+
+        const optionsHtml = q.options.map((opt, oi) => {
+          let cls = 'bg-slate-50/70 border-slate-200/80 text-slate-700 hover:bg-slate-100';
+          if (!state.examSubmitted && chosen === oi) {
+            cls = 'bg-emerald-50 border-emerald-500 text-emerald-950 font-medium ring-1 ring-emerald-500/30';
+          } else if (state.examSubmitted) {
+            if (oi === q.correct) {
+              cls = 'bg-emerald-50 border-emerald-400 text-emerald-950 font-medium';
+            } else if (oi === chosen) {
+              cls = 'bg-rose-50 border-rose-300 text-rose-950';
+            } else {
+              cls = 'bg-slate-50/40 border-slate-200/50 text-slate-400';
+            }
+          }
+
+          return `
+            <button
+              type="button"
+              ${state.examSubmitted ? 'disabled' : `onclick="selectExamOption(${qi}, ${oi})"`}
+              class="w-full flex items-start gap-3 p-3.5 rounded-xl border text-left text-xs sm:text-sm transition ${cls} ${state.examSubmitted ? 'cursor-default' : 'cursor-pointer'}"
+            >
+              <span class="w-5 h-5 rounded-full border border-current/30 text-[11px] font-semibold flex items-center justify-center shrink-0 mt-0.5">${String.fromCharCode(65 + oi)}</span>
+              <span class="leading-snug">${opt}</span>
+            </button>
+          `;
+        }).join('');
+
+        const reviewHtml = state.examSubmitted ? `
+          <div class="mt-3 p-3.5 rounded-xl text-xs leading-relaxed ${chosen === q.correct ? 'bg-emerald-50/80 border border-emerald-200 text-emerald-900' : 'bg-rose-50/80 border border-rose-200 text-rose-950'}">
+            <strong>${chosen === q.correct ? 'Correct!' : 'Incorrect — Review:'}</strong> ${q.explanation}
+          </div>
+        ` : '';
+
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-2xs">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="text-[11px] font-semibold text-slate-400">Question ${qi + 1} of ${total}</span>
+                  ${sectionTag}
+                </div>
+                <h3 class="text-sm sm:text-base font-semibold text-slate-900 leading-snug">${q.q}</h3>
+              </div>
+              ${q.visual ? `<div class="shrink-0 p-2 rounded-xl bg-slate-50 border border-slate-200/70">${q.visual}</div>` : ''}
+            </div>
+            <div class="space-y-2">${optionsHtml}</div>
+            ${reviewHtml}
+          </div>
+        `;
+      }).join('');
+
+      const submitSection = !state.examSubmitted ? `
+        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="text-xs sm:text-sm text-slate-600">
+            Answered <strong>${answeredCount} of ${total}</strong> questions. Answer all questions to grade your exam.
+          </div>
+          <button
+            onclick="submitExam()"
+            ${answeredCount < total ? 'disabled' : ''}
+            class="px-6 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed transition shrink-0"
+          >
+            Grade My Exam
+          </button>
+        </div>
+      ` : '';
+
+      container.innerHTML = `
+        <article class="fade-enter space-y-5">
+          <div class="mb-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-700 text-xs font-medium mb-3">
+              ${ICONS.trophy}
+              <span>Official 80% Pass Threshold Simulation</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">${step.title}</h2>
+            <p class="mt-1.5 text-sm sm:text-base text-slate-500">${step.subtitle}</p>
+          </div>
+          ${resultsBanner}
+          ${questionsHtml}
+          ${submitSection}
+        </article>
+      `;
+    }
+
+    function selectExamOption(questionIdx, optionIdx) {
+      state.examAnswers[questionIdx] = optionIdx;
+      saveState();
+      renderCurrentStep();
+    }
+
+    function submitExam() {
+      state.examSubmitted = true;
+      state.completedSteps['final-exam'] = true;
+      saveState();
+      renderCurrentStep();
+    }
+
+    function retakeExam() {
+      state.examAnswers = {};
+      state.examSubmitted = false;
+      delete state.completedSteps['final-exam'];
+      saveState();
+      renderCurrentStep();
+    }
+
+    /* =========================================================================
+     * 7. NAVIGATION, MOBILE DRAWER & MODAL CONTROLS
+     * ========================================================================= */
+    function navigateTo(index) {
+      if (index < 0 || index >= CURRICULUM.length) return;
+      state.currentIndex = index;
+      saveState();
+      closeMobileMenu();
+      renderCurrentStep();
+    }
+
+    function goNext() {
+      if (state.currentIndex < CURRICULUM.length - 1) {
+        navigateTo(state.currentIndex + 1);
+      }
+    }
+
+    function goPrev() {
+      if (state.currentIndex > 0) {
+        navigateTo(state.currentIndex - 1);
+      }
+    }
+
+    // Mobile menu drawer
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('-translate-x-full');
+      document.getElementById('sidebar-backdrop').classList.remove('hidden');
+    });
+
+    function closeMobileMenu() {
+      document.getElementById('sidebar').classList.add('-translate-x-full');
+      document.getElementById('sidebar-backdrop').classList.add('hidden');
+    }
+
+    // Cheat Sheet modal
+    function openCheatSheet() {
+      const modal = document.getElementById('cheatsheet-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      closeMobileMenu();
+    }
+
+    function closeCheatSheet() {
+      const modal = document.getElementById('cheatsheet-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Reset Progress modal
+    function openResetModal() {
+      const modal = document.getElementById('reset-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      closeMobileMenu();
+    }
+
+    function closeResetModal() {
+      const modal = document.getElementById('reset-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmResetProgress() {
+      state = structuredClone(DEFAULT_STATE);
+      saveState();
+      closeResetModal();
+      renderCurrentStep();
+    }
+
+    // Close modals with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCheatSheet();
+        closeResetModal();
+        closeMobileMenu();
+      }
+    });
+
+    // Initialize application on load
+    renderCurrentStep();
+  </script>
 </body>
 </html>
